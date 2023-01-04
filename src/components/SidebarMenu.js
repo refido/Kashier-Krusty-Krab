@@ -33,22 +33,22 @@ const App = () => {
         console.log('click ', e);
     };
     return (
-        <div style={{ minHeight: "100vh" }}>
-            <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+        <div style={{ height: "100vh"}}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
                 <div>
                     <Menu
                         onClick={onClick}
                         style={{
+                            height: '70vh',
                             width: 90,
-                            height: 944,
                             left: 0,
                             top: 0,
                             background: '#FEF56D',
                         }}
-                        defaultSelectedKeys={['1']}
-                        defaultOpenKeys={['sub1']}
                         mode="inline">
-                        <img src={logoKrustyKrab} style={{ width: 38, height: 38, marginTop: 10 }} />
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <img src={logoKrustyKrab} style={{ width: 38, height: 38, marginTop: 10 }} />
+                        </div>
                         <Menu.Item key="/2">
                             <img src={product} style={{ width: 39, height: 35 }} />
                             {/* <Link to='/admin/login' /> */}
@@ -61,11 +61,19 @@ const App = () => {
                             <img src={transaction} style={{ width: 39, height: 35 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
-                        <Menu.Item
-                            key="bottom-spacer"
-                            disabled
-                            style={{ marginTop: 'auto', display: 'hidden' }}
-                        />
+                    </Menu>
+                </div>
+                <div>
+                    <Menu
+                        onClick={onClick}
+                        style={{
+                            height: '30vh',
+                            width: 90,
+                            left: 0,
+                            background: '#FEF56D',
+                            marginBottom: 'auto',
+                        }}
+                        mode="inline">
                         <Menu.Item key="/5">
                             <img src={setting} style={{ width: 31, height: 34 }} />
                             {/* <Link to='/admin/login' /> */}
@@ -80,7 +88,9 @@ const App = () => {
                             <img src={avatar} style={{ width: 35, height: 30 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
-                        <img src={profile} style={{ marginLeft: 5, width: 25, height: 10 }} />
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <img src={profile} style={{ marginLeft: 0, width: 25, height: 10 }} />
+                        </div>
                     </Menu>
                 </div>
             </div>
