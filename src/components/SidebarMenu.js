@@ -72,6 +72,9 @@ const App = () => {
                             left: 0,
                             background: '#FEF56D',
                             marginBottom: 'auto',
+                            display: 'flex', 
+                            flexDirection: 'column',
+                            justifyContent: 'end', 
                         }}
                         mode="inline">
                         <Menu.Item key="/5">
