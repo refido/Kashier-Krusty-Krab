@@ -39,25 +39,25 @@ const App = () => {
                     <Menu
                         onClick={onClick}
                         style={{
-                            height: '70vh',
-                            width: 90,
+                            height: '65vh',
+                            width: 72,
                             left: 0,
                             top: 0,
                             background: '#FEF56D',
                         }}
                         mode="inline">
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img src={logoKrustyKrab} style={{ width: 38, height: 38, marginTop: 10 }} />
+                        <div style={{ display: 'flex', justifyContent: 'center'}}>
+                            <img src={logoKrustyKrab} style={{ width: 65, height: 57, marginTop: 10 }} />
                         </div>
-                        <Menu.Item key="/2">
-                            <img src={product} style={{ width: 39, height: 35 }} />
+                        <Menu.Item key="/2" style={{ paddingLeft: 10, marginTop: 10}}>
+                            <img src={product} style={{ width: 45, height: 37 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
-                        <Menu.Item key="/3">
-                            <img src={cashier} style={{ width: 33, height: 35 }} />
+                        <Menu.Item key="/3" style={{ paddingLeft: 10, marginTop: 10}}>
+                            <img src={cashier} style={{ width: 42, height: 37 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
-                        <Menu.Item key="/4">
+                        <Menu.Item key="/4"  style={{ paddingLeft: 9, marginTop: 10}}>
                             <img src={transaction} style={{ width: 39, height: 35 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
@@ -67,8 +67,8 @@ const App = () => {
                     <Menu
                         onClick={onClick}
                         style={{
-                            height: '30vh',
-                            width: 90,
+                            height: '35vh',
+                            width: 72,
                             left: 0,
                             background: '#FEF56D',
                             marginBottom: 'auto',
@@ -77,22 +77,23 @@ const App = () => {
                             justifyContent: 'end', 
                         }}
                         mode="inline">
-                        <Menu.Item key="/5">
-                            <img src={setting} style={{ width: 31, height: 34 }} />
+                        <Menu.Item key="/5" style={{ paddingLeft: 12, marginTop: 5}}>
+
+                            <img src={setting} style={{ width: 34, height: 38 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
-                        <Menu.Item key="/6">
-                            <img src={logout} style={{ width: 31, height: 33 }} />
+                        <Menu.Item key="/6" style={{ paddingLeft: 12, marginTop: 5}}>
+                            <img src={logout} style={{ width: 34, height: 37 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
                         <Menu.Divider />
 
-                        <Menu.Item key="/profile">
-                            <img src={avatar} style={{ width: 35, height: 30 }} />
+                        <Menu.Item key="/profile" style={{ paddingLeft: 12, marginTop: 5}}>
+                            <img src={avatar} style={{ width: 36, height: 35 }} />
                             {/* <Link to='/admin/login' /> */}
                         </Menu.Item>
-                        <div style={{ display: 'flex', justifyContent: 'center' }}>
-                            <img src={profile} style={{ marginLeft: 0, width: 25, height: 10 }} />
+                        <div style={{ display: 'flex', justifyContent: 'center', marginBottom:10}}>
+                            <img src={profile} style={{ width: 29, height: 10 }} />
                         </div>
                     </Menu>
                 </div>
