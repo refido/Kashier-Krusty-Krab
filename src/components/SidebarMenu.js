@@ -10,6 +10,7 @@ import setting from '../logo/settings.png';
 import profile from '../logo/profile.png';
 import avatar from '../logo/avatar.png';
 import MenuItem from 'antd/es/menu/MenuItem';
+import styled from 'styled-components';
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -33,7 +34,7 @@ const App = () => {
         console.log('click ', e);
     };
     return (
-        <div style={{ height: "100vh"}}>
+        <Layout>
             <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
                 <div>
                     <Menu
@@ -98,9 +99,13 @@ const App = () => {
                     </Menu>
                 </div>
             </div>
-        </div>
+        </Layout>
     );
 };
 
+const Layout = styled.div`
+height: "100vh"; 
+background: linear-gradient(180deg, #83EAF3 0%, #77E1EF 26.95%, #40AEDF 67.7%, #2EA0D7 100%);
+`;
 
 export default App;
