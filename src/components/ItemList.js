@@ -11,14 +11,15 @@ function ItemList({ item }) {
       className='card-style'
     // extra={<a href="#">More</a>}
     >
-      <Popup trigger={<MoreOutlined className='more-popup' />} nested position="bottom" >
+      <Popup trigger={<MoreOutlined style={{ color:'white' }} className='more-popup' />} nested position="bottom right" >
         <div>
-          <a href='#'>Sold item</a>
+          <a className='a-popup' href='#'>SOLD</a>
         </div>
       </Popup>
       <div className='bubble-card'>
         <p>asdw</p>
       </div>
+      
       <p className='text-style-card'>{item.name}</p>
       <p className='text-style-card'>Rp. {item.price.toLocaleString().replace(',', '.')}</p>
       {/* <Meta title={item.name} /> */}

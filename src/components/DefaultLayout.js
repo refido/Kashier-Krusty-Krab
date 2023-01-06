@@ -6,18 +6,26 @@ import "../styles/KashierItemComponent.css"
 function DefaultLayout({ children }) {
   return (
     <Layout>
-      <Layout className='site-layout'>
-        <Content
-          className='site-layout-background'
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          {children}
-        </Content>
-      </Layout>
+      <div className='background'>
+        <div className='flower'>
+
+          <Layout className='site-layout'>
+            <Content
+              className='site-layout-background'
+              style={{
+                // top: 20,
+                padding: 24,
+                // margin: "24px 16px",
+                // padding: 24,
+                // minHeight: 280,
+              }}
+            >
+              {children}
+            </Content>
+          </Layout>
+
+        </div>
+      </div>
     </Layout>
   )
 }

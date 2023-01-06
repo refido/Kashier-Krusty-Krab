@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd'
+import { Col, Layout, Row } from 'antd'
 import React from 'react'
 import DefaultLayout from '../components/DefaultLayout'
 import ItemList from '../components/ItemList'
@@ -10,6 +10,10 @@ function Homepage() {
     ]
     return (
         <DefaultLayout>
+            <div className='block-head'>
+                <p>Choose Categori</p>
+                <input className='search-input' placeholder='Search Item'></input>
+            </div>
             <Row>
                 {
                     itemData.map((item => (

@@ -1,15 +1,84 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
+@font-face {
+    font-family: spongebob;
+    src: url(../../public/font/Spongeboy_Me_Bob.ttf);
+}
+
 * {
     font-family: 'Poppins';
+}
+
+.background{
+    background: linear-gradient(180deg, #83EAF3 0%, #77E1EF 26.95%, #40AEDF 67.7%, #2EA0D7 100%);
+    height: 1000px;
+}
+
+.block-head {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.block-head p {
+    font-family: spongebob;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 20px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #BA6400;
+
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.block-head input {
+    margin: auto;
+    display: inline-block;
+}
+
+.search-input {
+    /* Frame 4 */
+    box-sizing: border-box;
+
+    /* Auto layout */
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 12px 24px;
+    gap: 10px;
+    margin-bottom: 20px;
+
+
+    width: 500px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 50px;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 1;
+    flex-grow: 0;
 }
 
 .site-layout .site-layout-background {
     background-image: url("../../public/image/sand.png");
     box-shadow: 0 0 3px #ccc;
     border-radius: 5px;
-    margin: 10px;
+    /* margin: 10px; */
     overflow: auto;
+    top: 20px;
+    left: 20px;
+
+    /* position: absolute; */
 }
 
 .item-button {
@@ -103,14 +172,22 @@
 }
 
 .popup-content {
-    margin: auto;
+    /* margin: auto; */
+    /* margin-left: */
     font-size: small;
-    background: rgb(255, 255, 255);
-    width: 8%;
+    background: rgba(255, 17, 17, 1);
+    width: 90px;
     padding: 5px;
+    border-radius: 16px;
+    text-align: center;
 }
 
-.more-popup{
+.a-popup {
+    text-decoration: none;
+    color: white;
+}
+
+.more-popup {
     position: absolute;
     top: 15px;
     right: 20px;
