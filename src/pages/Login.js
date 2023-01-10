@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import FormLogin from "../components/FormLogin";
 import logoKrustyKrab from "../logo/logoKrustyKrab-1.png"
@@ -29,7 +30,7 @@ const Logo = styled.img`
 const Container = styled.div`
     background-image: url('/background-bunga.png');
     background-repeat: no-repeat;
-    display: flex:
+    display: flex;
     justify-content: row;
 `;
 
