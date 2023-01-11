@@ -1,38 +1,38 @@
-import { message, Row } from "antd";
+import { message } from "antd";
 import axios from "axios";
-import { useState } from "react";
-import styled from "styled-components";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import picture from "../logo/Squidward&Patrick.png";
 import "../styles/LoginForm.css";
 
 function FormLogin() {
+    const navigate = useNavigate()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    // const handleUsernameChange = (e) => {
-    //     setUsername(e.target.value)
-    // }
-
-    // const handlePasswordChange = (e) => {
-    //     setPassword(e.target.value)
-    // }
-
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // console.log(username, password);
         try {
-            const res = await axios.post("http://localhost:8080/users/login", { userId: username, password: password })
+            const res = await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/users/login", { userId: username, password: password })
             if (res.data.message === "Login Fail") {
                 message.error("Something went wrong")
             } else {
                 message.success("Success login")
+                localStorage.setItem("auth", JSON.stringify(res.data));
+                navigate("/Home");
             }
-            // message.success("user login success")
         } catch (error) {
             message.error("Something went wrong")
             console.log(error);
         }
     }
+
+    useEffect(() => {
+        if (localStorage.getItem("auth")) {
+            localStorage.getItem("auth"); navigate("/Home");
+        }
+    }, [navigate]);
+
     return (
         <div className="formLayout">
             <div className="pict">

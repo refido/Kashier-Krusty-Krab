@@ -1,4 +1,4 @@
-import { Col, Layout, Row, Button, Space, Divider } from 'antd'
+import { Col, Layout, Row, Button, Space } from 'antd'
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
 import { Content } from 'antd/es/layout/layout'
 import React from 'react'

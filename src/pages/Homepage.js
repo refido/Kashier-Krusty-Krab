@@ -16,7 +16,6 @@ function Homepage() {
     ]
     return (
         <div>
-
             <DefaultLayout>
                 <div className='block-head'>
                     <p>Choose Categori</p>

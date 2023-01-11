@@ -2,7 +2,6 @@
 import styled from "styled-components";
 import FormLogin from "../components/FormLogin";
 import logoKrustyKrab from "../logo/logoKrustyKrab-1.png"
-import picture from "../logo/Squidward&Patrick.png";
 
 function Login() {
     return (
