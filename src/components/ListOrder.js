@@ -5,7 +5,7 @@ import React from 'react'
 import "../styles/ListOrder.css"
 const ListOrder = () => {
     return (
-        <Col span={6} push={14}>
+        <Col span={6} push={16}>
             <Layout className='list-order'>
                 <Content className='site-layout-background'
                     style={{

@@ -17,7 +17,7 @@ function DefaultLayout({ children }) {
               <SidebarMenu />
             </SideBar>
             <ListOrder />
-            <Col span={14} pull={6}>
+            <Col span={16} pull={6}>
               <Layout className='site-layout'>
                 <Content
                   className='site-layout-background'
