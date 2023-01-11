@@ -9,25 +9,21 @@ function DefaultLayout({ children }) {
     <Layout>
       <div className='background'>
         <div className='flower'>
-      <Row>
-        <ListOrder />
-        <Col span={16} pull={8}>
-          <Layout className='site-layout'>
-            <Content
-              className='site-layout-background'
-              style={{
-                // top: 20,
-                padding: 24,
-                // margin: "24px 16px",
-                // padding: 24,
-                // minHeight: 280,
-              }}
-            >
-              {children}
-            </Content>
-          </Layout>
-        </Col>
-      </Row>
+          <Row>
+            <ListOrder />
+            <Col span={16} pull={8}>
+              <Layout className='site-layout'>
+                <Content
+                  className='site-layout-background'
+                  style={{                    
+                    padding: 24,
+                  }}
+                >
+                  {children}
+                </Content>
+              </Layout>
+            </Col>
+          </Row>
         </div>
       </div>
     </Layout>

@@ -6,14 +6,16 @@
 
 .list-order .site-layout-background {
     background-image: url("../../public/image/sand.png");
-    background-position: center;
     background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     box-shadow: 0 0 3px #ccc;
     border-radius: 5px;
+    top: 20px;
+    width: 445px;
     margin: 10px;
-    right: 50px;
     overflow: auto;
+    position: absolute;
     min-height: 600px;
     max-height: 600px;
 }
@@ -40,7 +42,7 @@
     background-image: url("../../public/image/wooden.jpg");
     background-size: 1000px;
     background-repeat: no-repeat;
-    width: 1000x;
+    /* width: 1000px; */
     height: 45px;
     display: flex;
     border-radius: 32px;
@@ -74,9 +76,9 @@ svg {
     padding: 10px;
     position: absolute;
     width: 415px;
-    height: 160px;
-    left: 20px;
-    top: 400px;
+    height: 135px;
+    left: 10px;
+    top: 375px;
     background: #FFFBDC;
     border-radius: 30px;
 }
