@@ -6,10 +6,16 @@
 
 .site-layout .site-layout-background {
     background-image: url("../../public/image/sand.png");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
     box-shadow: 0 0 3px #ccc;
     border-radius: 5px;
     margin: 10px;
     overflow: auto;
+    min-height: 600px;
+    max-height: 600px;
+    
 }
 
 .item-button {
