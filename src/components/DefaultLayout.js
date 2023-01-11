@@ -4,18 +4,24 @@ import React from 'react'
 import "../styles/KashierItemComponent.css"
 import "../styles/ListOrder.css"
 import ListOrder from "./ListOrder";
+import SidebarMenu from '../components/SidebarMenu';
+import styled from 'styled-components';
+
 function DefaultLayout({ children }) {
   return (
     <Layout>
       <div className='background'>
         <div className='flower'>
           <Row>
+            <SideBar>
+              <SidebarMenu />
+            </SideBar>
             <ListOrder />
-            <Col span={16} pull={8}>
+            <Col span={14} pull={6}>
               <Layout className='site-layout'>
                 <Content
                   className='site-layout-background'
-                  style={{                    
+                  style={{
                     padding: 24,
                   }}
                 >
@@ -29,5 +35,9 @@ function DefaultLayout({ children }) {
     </Layout>
   )
 }
+
+const SideBar = styled.div`
+   padding: 10;
+`;
 
 export default DefaultLayout

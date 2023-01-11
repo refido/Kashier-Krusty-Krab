@@ -34,7 +34,7 @@ const App = () => {
         console.log('click ', e);
     };
     return (
-        <Layout>
+        // <Layout>
             <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100%'}}>
                 <div>
                     <Menu
@@ -99,13 +99,13 @@ const App = () => {
                     </Menu>
                 </div>
             </div>
-        </Layout>
+        // </Layout>
     );
 };
 
-const Layout = styled.div`
-height: "100vh"; 
-background: linear-gradient(180deg, #83EAF3 0%, #77E1EF 26.95%, #40AEDF 67.7%, #2EA0D7 100%);
-`;
+// const Layout = styled.div`
+// height: "100vh"; 
+// background: linear-gradient(180deg, #83EAF3 0%, #77E1EF 26.95%, #40AEDF 67.7%, #2EA0D7 100%);
+// `;
 
 export default App;

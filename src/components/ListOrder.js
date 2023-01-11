@@ -5,12 +5,12 @@ import React from 'react'
 import "../styles/ListOrder.css"
 const ListOrder = () => {
     return (
-        <Col span={8} push={16}>
+        <Col span={6} push={14}>
             <Layout className='list-order'>
                 <Content className='site-layout-background'
-                    style={{                    
+                    style={{
                         padding: 24,
-                      }}
+                    }}
                 >
                     <Row>
                         <Col span={12}>
@@ -31,91 +31,6 @@ const ListOrder = () => {
                                 <div className='wooden-card-order'>
                                     <Space wrap className='wooden-content'>
                                         <p className='wooden-item'>Krabby Patty</p>
-                                        <Button type="default" shape="circle" icon={<MinusOutlined />} size='small' />
-                                        <p className='wooden-font'>123</p>
-                                        <Button type="default" shape="circle" icon={<PlusOutlined />} size='small' />
-                                    </Space>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col flex="50px">
-                                <div className='bubble-card-order'>
-                                    <p>image</p>
-                                </div>
-                            </Col>
-                            <Col flex="auto">
-                                <div className='wooden-card-order'>
-                                    <Space wrap className='wooden-content'>
-                                        <p className='wooden-font'>Krabby Patty</p>
-                                        <Button type="default" shape="circle" icon={<MinusOutlined />} size='small' />
-                                        <p className='wooden-font'>123</p>
-                                        <Button type="default" shape="circle" icon={<PlusOutlined />} size='small' />
-                                    </Space>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col flex="50px">
-                                <div className='bubble-card-order'>
-                                    <p>image</p>
-                                </div>
-                            </Col>
-                            <Col flex="auto">
-                                <div className='wooden-card-order'>
-                                    <Space wrap className='wooden-content'>
-                                        <p className='wooden-font'>Krabby Patty</p>
-                                        <Button type="default" shape="circle" icon={<MinusOutlined />} size='small' />
-                                        <p className='wooden-font'>123</p>
-                                        <Button type="default" shape="circle" icon={<PlusOutlined />} size='small' />
-                                    </Space>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col flex="50px">
-                                <div className='bubble-card-order'>
-                                    <p>image</p>
-                                </div>
-                            </Col>
-                            <Col flex="auto">
-                                <div className='wooden-card-order'>
-                                    <Space wrap className='wooden-content'>
-                                        <p className='wooden-font'>Krabby Patty</p>
-                                        <Button type="default" shape="circle" icon={<MinusOutlined />} size='small' />
-                                        <p className='wooden-font'>123</p>
-                                        <Button type="default" shape="circle" icon={<PlusOutlined />} size='small' />
-                                    </Space>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col flex="50px">
-                                <div className='bubble-card-order'>
-                                    <p>image</p>
-                                </div>
-                            </Col>
-                            <Col flex="auto">
-                                <div className='wooden-card-order'>
-                                    <Space wrap className='wooden-content'>
-                                        <p className='wooden-font'>Krabby Patty</p>
-                                        <Button type="default" shape="circle" icon={<MinusOutlined />} size='small' />
-                                        <p className='wooden-font'>123</p>
-                                        <Button type="default" shape="circle" icon={<PlusOutlined />} size='small' />
-                                    </Space>
-                                </div>
-                            </Col>
-                        </Row>
-                        <Row>
-                            <Col flex="50px">
-                                <div className='bubble-card-order'>
-                                    <p>image</p>
-                                </div>
-                            </Col>
-                            <Col flex="auto">
-                                <div className='wooden-card-order'>
-                                    <Space wrap className='wooden-content'>
-                                        <p className='wooden-font'>Krabby Patty</p>
                                         <Button type="default" shape="circle" icon={<MinusOutlined />} size='small' />
                                         <p className='wooden-font'>123</p>
                                         <Button type="default" shape="circle" icon={<PlusOutlined />} size='small' />
