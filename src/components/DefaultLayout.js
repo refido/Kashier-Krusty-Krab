@@ -7,6 +7,8 @@ import ListOrder from "./ListOrder";
 function DefaultLayout({ children }) {
   return (
     <Layout>
+      <div className='background'>
+        <div className='flower'>
       <Row>
         <ListOrder />
         <Col span={16} pull={8}>
@@ -14,17 +16,20 @@ function DefaultLayout({ children }) {
             <Content
               className='site-layout-background'
               style={{
-                margin: "24px 16px",
-                left: 0,
-                top: 0,
+                // top: 20,
+                padding: 24,
+                // margin: "24px 16px",
+                // padding: 24,
+                // minHeight: 280,
               }}
             >
-              Choose Category
               {children}
             </Content>
           </Layout>
         </Col>
       </Row>
+        </div>
+      </div>
     </Layout>
   )
 }

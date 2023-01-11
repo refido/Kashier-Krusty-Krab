@@ -16,6 +16,16 @@ function Homepage() {
     ]
     return (
         <DefaultLayout>
+            <div className='block-head'>
+                <p>Choose Categori</p>
+                <input className='search-input' placeholder='Search Item'></input>
+            </div>
+            <div className='block-category'>
+                <div className='bubble-category'><img src={process.env.PUBLIC_URL + '/image/krustykrab.png'} alt="Logo" /></div>
+                <div className='bubble-category'><img src={process.env.PUBLIC_URL + '/image/krabby_patty.png'} alt="Logo" /></div>
+                <div className='bubble-category'><img src={process.env.PUBLIC_URL + '/image/image 12.png'} alt="Logo" /></div>
+                <div className='bubble-category'><img src={process.env.PUBLIC_URL + '/image/image 13.png'} alt="Logo" /></div>
+            </div>
             <Row>
                 {
                     itemData.map((item => (
