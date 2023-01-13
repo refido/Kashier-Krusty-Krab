@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: spongebob;
+    src: url(../../public/font/Spongeboy_Me_Bob.ttf);
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.ant-modal-content .detail{
+    background: white;
+    border-radius: 500px;
+}
+
+.transaction-table {
+    width: 80vh;
+}
+
+.value {
+    text-align: end;
+}
+
+.purchase-item {
+    border-radius: 50;
+}
