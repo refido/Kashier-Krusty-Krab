@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    font-family: 'Poppins';
+}
+
+.list-order .site-layout-background {
+    background-image: url("../../public/image/sand.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 3px #ccc;
+    border-radius: 5px;
+    top: 20px;
+    width: 100%;
+    margin: 10px;
+    overflow: auto;
+    position: absolute;
+    min-height: 600px;
+    max-height: 600px;
+}
+
+.list-order-item {
+    overflow: auto;
+    max-height: 330px;
+}
+
+.bubble-card-order {
+    background-image: url("../../public/image/Bubble1.png");
+    background-position: left;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    width: 40x;
+    height: 100px;
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    padding-top: 40px;
+}
+
+.wooden-card-order {
+    background-image: url("../../public/image/wooden.jpg");
+    background-size: 1000px;
+    background-repeat: no-repeat;
+    /* width: 1000px; */
+    height: 45px;
+    display: flex;
+    border-radius: 32px;
+    padding-top: 13px;
+    padding-left: 15px;
+    margin-top: 25px;
+}
+
+.wooden-item {
+    color: white;
+    width: 115px;
+}
+
+.wooden-font {
+    color: white;
+}
+
+.wooden-content {
+    align-items: unset;
+}
+
+.wooden-content img,
+svg {
+    vertical-align: unset;
+}
+
+.price-order {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    position: absolute;
+    width: 320px;
+    height: 135px;
+    left: 10px;
+    top: 375px;
+    background: #FFFBDC;
+    border-radius: 30px;
+}
+
+.subtotal {
+    /* Subtotal */
+    width: 180px;
+    height: 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #BA6400;
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.subtotal-price {
+    /* Rp.125.000 */
+    width: 110px;
+    height: 30px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 30px;
+    /* identical to box height */
+    display: flex;
+    align-items: center;
+    color: #BA6400;
+    /* Inside auto layout */
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.horizontal-line {
+    /* Line 12 */
+    width: 300px;
+    height: 0px;
+    border: 1px solid #BA6400;
+    /* Inside auto layout */
+    flex: none;
+    order: 3;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+.button-confirm {
+    /* Login */
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding: 12px 32px;
+    gap: 4px; */
+    position: absolute;
+    width: 225px;
+    height: 50px;
+    left: 20px;
+    bottom: 30px;
+    background: #FEF56D;
+    border-radius: 25px;
+    border: unset;
+}
+
+.starfish {
+    background-image: url("../../public/image/starfish.png");
+    background-repeat: no-repeat;
+    position: absolute;
+    width: 90px;
+    height: 85px;
+    right: 10px;
+    bottom: 10px;
+}
