@@ -8,7 +8,7 @@ const ButtonPayment = () => {
     return (
         <>
             <Button type="primary" onClick={() => setOpen(true)}>
-                Open Modal of 1000px width
+                Confirm
             </Button>
             <Modal
                 centered
@@ -54,7 +54,6 @@ const ButtonPayment = () => {
             >
                 <div className='center-div'>
                     <h3>Payment</h3>
-
                     <img src={process.env.PUBLIC_URL + '/image/payment2.png'} style={{ width: 150, height: 150 }} />
                     <h6><span className='custName'>ABC's</span> change amount</h6>
                     <h4>Rp 12.000</h4>
