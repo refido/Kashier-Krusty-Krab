@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { Button, Modal, InputNumber, Space } from 'antd';
 import '../styles/ModalPayment.css';
 
-const ModalAddProduct = () => {
-    const [openModalAddProduct, setOpenModalAddProduct] = useState(true);
+const ModalDetailProduct = () => {
+    const [openModalDetailProduct, setOpenModalDetailProduct] = useState(true);
     return (
         <Modal
             centered
-            open={openModalAddProduct}
+            open={openModalDetailProduct}
             okText="Submit"
             cancelText="Cancel"
-            onOk={() => { setOpenModalAddProduct(false) }}
-            onCancel={() => setOpenModalAddProduct(false)}
+            onOk={() => { setOpenModalDetailProduct(false) }}
+            onCancel={() => setOpenModalDetailProduct(false)}
             width={450}
         >
             <div className='center-div'>
                 <h3>Add Product</h3>
 
-                <img src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
+                <img src={process.env.PUBLIC_URL + '/image/productdetail.png'} style={{ width: 130, height: 116 }} />
                 <form >
                     <div className="container-form">
                         <div className="input-form">
@@ -60,4 +60,4 @@ const ModalAddProduct = () => {
     );
 };
 
-export default ModalAddProduct;
+export default ModalDetailProduct;
