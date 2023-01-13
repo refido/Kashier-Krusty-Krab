@@ -1,14 +1,16 @@
 import DefaultLayout from '../components/DefaultLayout'
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input, Modal, Space, Table } from 'antd';
 import { ProfileOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import axios from 'axios';
 
 function Historypage() {
 
     const [open, setOpen] = useState(false)
     const [modalData, setModalData] = useState(null)
 
+    const [billsData, setBillsData] = useState([]);
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -116,104 +118,39 @@ function Historypage() {
             ),
     });
 
-    const data = [
-        {
-            key: '1',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '2',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '3',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '4',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '5',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '6',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '7',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '8',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '9',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '10',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-        {
-            key: '11',
-            custName: 'Ali',
-            totItem: 3,
-            tax: 2300,
-            price: 230000
-        },
-    ];
+    const getAllBills = async () => {
+        try {
+            const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/bill/");
+            setBillsData(data);
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    //useEffect
+    useEffect(() => {
+        getAllBills();
+        //eslint-disable-next-line
+    }, []);
 
     const columns = [
         {
             title: 'ID Transaction',
-            dataIndex: 'key',
-            key: 'key',
+            dataIndex: '_id',
+            key: '_id',
             sorter: (a, b) => a.key - b.key,
         },
         {
             title: 'Customer Name',
-            dataIndex: 'custName',
-            key: 'custName',
-            ...getColumnSearchProps('custName')
+            dataIndex: 'customerName',
+            key: 'customerName',
+            ...getColumnSearchProps('customerName')
         },
         {
-            title: 'Total Item',
-            dataIndex: 'totItem',
-            key: 'totItem',
-            sorter: (a, b) => a.totItem - b.totItem,
+            title: 'Subtotal',
+            dataIndex: 'subTotal',
+            key: 'subTotal',
+            sorter: (a, b) => a.subTotal - b.subTotal,
         },
         {
             title: 'Tax',
@@ -223,9 +160,9 @@ function Historypage() {
         },
         {
             title: 'Total Price',
-            key: 'price',
-            dataIndex: 'price',
-            sorter: (a, b) => a.price - b.price,
+            key: 'totalAmount',
+            dataIndex: 'totalAmount',
+            sorter: (a, b) => a.totalAmount - b.totalAmount,
         },
         {
             title: 'Action',
@@ -245,7 +182,7 @@ function Historypage() {
             </div>
             <Table
                 columns={columns}
-                dataSource={data}
+                dataSource={billsData}
                 onRow={(record) => {
                     return {
                         onClick: () => {
@@ -257,7 +194,7 @@ function Historypage() {
             <Modal open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}>
                 {modalData && (
                     <div>
-                        {modalData.key}
+                        {modalData._id}
                     </div>
                 )}
             </Modal>

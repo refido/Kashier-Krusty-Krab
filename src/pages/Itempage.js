@@ -1,12 +1,14 @@
 import DefaultLayout from '../components/DefaultLayout'
 import '../styles/itempage.css'
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input, Modal, Space, Table } from 'antd';
 import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
+import axios from 'axios';
 
 function Itempage() {
     const [modalData, setModalData] = useState(null)
+    const [itemsData, setItemsData] = useState([])
     const [open, setOpen] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
@@ -114,109 +116,54 @@ function Itempage() {
                 text
             ),
     });
-    const data = [
-        {
-            key: '1',
-            category: 'Food',
-            product: "Krabby Patty",
-            price: 230000,
-            status: false,
-        },
-        {
-            key: '2',
-            category: 'Drink',
-            product: "Orange Soda",
-            price: 230000,
-            status: true,
-        },
-        {
-            key: '3',
-            category: 'Drink',
-            product: "Orange Soda",
-            price: 230000,
-            status: false,
-        },
-        {
-            key: '4',
-            category: 'Drink',
-            product: "Orange Soda",
-            price: 230000,
-            status: true,
-        },
-        {
-            key: '5',
-            category: 'Food',
-            product: "Krabby Patty",
-            price: 230000,
-            status: true,
-        },
-        {
-            key: '6',
-            category: 'Food',
-            product: "Krabby Patty",
-            price: 230000,
-            status: false,
-        },
-        {
-            key: '7',
-            category: 'Drink',
-            product: "Orange Soda",
-            price: 230000,
-            status: false,
-        },
-        {
-            key: '8',
-            category: 'Drink',
-            product: "Orange Soda",
-            price: 230000,
-            status: true,
-        },
-        {
-            key: '9',
-            category: 'Food',
-            product: "Krabby Patty",
-            price: 230000,
-            status: false,
-        },
-        {
-            key: '10',
-            category: 'Snack',
-            product: "French Fries",
-            price: 230000,
-            status: false,
-        },
-        {
-            key: '11',
-            category: 'Food',
-            product: "Krabby Patty",
-            price: 230000,
-            status: true,
-        },
-    ];
+    
+    const getAllItems = async () => {
+        try {
+          const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item/");
+          setItemsData(data);
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
+      };
+      //useEffect
+      useEffect(() => {
+        getAllItems();
+        //eslint-disable-next-line
+      }, []);
+
+      console.log(itemsData);
 
     const columns = [
         {
-            title: 'ID Transaction',
-            dataIndex: 'key',
-            key: 'key',
-            sorter: (a, b) => a.key - b.key,
+            title: 'ID Item',
+            dataIndex: '_id',
+            key: '_id',
+            sorter: (a, b) => a._id - b._id,
+        },
+        {
+            title: 'Picture',
+            dataIndex: 'image',
+            render: (image, record) => (
+                <img src={image} alt={record.name} height="60" width="60" />
+            )
         },
         {
             title: 'Category',
             dataIndex: 'category',
-            key: 'category',
+            // key: 'category',
             filters: [
                 {
                     text: 'Food',
-                    value: 'Food',
+                    value: 'food',
                 },
                 {
                     text: 'Drink',
-                    value: 'Drink',
+                    value: 'drink',
                 },
                 {
                     text: 'Snack',
-                    value: 'Snack',
+                    value: 'snack',
                 },
             ],
             filterMode: 'tree',
@@ -226,20 +173,20 @@ function Itempage() {
         },
         {
             title: 'Product',
-            dataIndex: 'product',
-            key: 'product',
-            ...getColumnSearchProps('product')
+            dataIndex: 'name',
+            // key: 'name',
+            ...getColumnSearchProps('name')
         },
         {
             title: 'Price',
-            key: 'price',
+            // key: 'price',
             dataIndex: 'price',
             sorter: (a, b) => a.price - b.price,
         },
         {
             title: 'Status',
             dataIndex: 'status',
-            key: 'status',
+            // key: 'status',
             sorter: (a, b) => {
                 if (a.status === b.status) {
                     return 0;
@@ -276,7 +223,7 @@ function Itempage() {
             </div>
             <Table
                 columns={columns}
-                dataSource={data}
+                dataSource={itemsData}
                 onRow={(record) => {
                     return {
                         onClick: () => {
