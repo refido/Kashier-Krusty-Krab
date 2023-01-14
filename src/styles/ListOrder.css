@@ -30,12 +30,12 @@
     background-position: left;
     background-size: 40px;
     background-repeat: no-repeat;
-    width: 40x;
+    width: 40px;
     height: 100px;
     display: flex;
-    align-items: left;
-    justify-content: left;
-    padding-top: 40px;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
 }
 
 .wooden-card-order {

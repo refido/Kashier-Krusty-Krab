@@ -18,14 +18,6 @@ function getItem(label, key, icon, children, type) {
         type,
     };
 }
-const items = [
-    getItem(<img src={logoKrustyKrab} style={{ width: 30, height: 30, }} />),
-    getItem(<img src={product} style={{ width: 38, height: 35 }} />, '2'),
-    getItem(<img src={cashier} style={{ width: 35, height: 35 }} />, '3'),
-    getItem(<img src={transaction} style={{ width: 35, height: 33 }} />, '4'),
-    getItem(<img src={setting} style={{ width: 33, height: 35 }} />, '5'),
-    getItem(<img src={logout} style={{ width: 33, height: 35 }} />, '6'),
-];
 const App = () => {
     const onClick = (e) => {
         console.log('click ', e);
@@ -46,12 +38,12 @@ const App = () => {
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={logoKrustyKrab} style={{ width: 65, height: 57, marginTop: 10 }} />
                     </div>
-                    <Menu.Item key="/2" style={{ paddingLeft: 10, marginTop: 10 }}>
-                        <img src={product} style={{ width: 45, height: 37 }} />
-                        {/* <Link to='/admin/login' /> */}
-                    </Menu.Item>
                     <Menu.Item key="/3" style={{ paddingLeft: 10, marginTop: 10 }}>
                         <img src={cashier} style={{ width: 42, height: 37 }} />
+                        {/* <Link to='/admin/login' /> */}
+                    </Menu.Item>
+                    <Menu.Item key="/2" style={{ paddingLeft: 10, marginTop: 10 }}>
+                        <img src={product} style={{ width: 45, height: 37 }} />
                         {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
                     <Menu.Item key="/4" style={{ paddingLeft: 9, marginTop: 10 }}>

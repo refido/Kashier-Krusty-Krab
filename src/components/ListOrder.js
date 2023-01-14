@@ -1,10 +1,44 @@
 import { Col, Layout, Row, Button, Space } from 'antd'
 import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
 import { Content } from 'antd/es/layout/layout'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/ListOrder.css"
 import ButtonPayment from '../components/modal-payment';
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 const ListOrder = () => {
+    const dispatch = useDispatch();
+    const { cartItems } = useSelector((state) => state.rootReducer);
+
+    const [subTotal, setSubTotal] = useState(0);
+
+    //handle increament
+    const handleIncreament = (record) => {
+        dispatch({
+            type: "UPDATE_CART",
+            payload: { ...record, quantity: record.quantity + 1 },
+        });
+    };
+    const handleDecreament = (record) => {
+        if (record.quantity !== 1) {
+            dispatch({
+                type: "UPDATE_CART",
+                payload: { ...record, quantity: record.quantity - 1 },
+            });
+        } else {
+            dispatch({
+                type: "DELETE_FROM_CART",
+                payload: record
+            })
+        }
+    };
+
+    useEffect(() => {
+        let temp = 0;
+        cartItems.forEach((item) => (temp = temp + item.price * item.quantity));
+        setSubTotal(temp);
+    }, [cartItems]);
+
     return (
         <Col span={6} push={16}>
             <Layout className='list-order'>
@@ -22,23 +56,26 @@ const ListOrder = () => {
                         </Col>
                     </Row>
                     <div className='list-order-item'>
-                        <Row>
-                            <Col flex="50px">
-                                <div className='bubble-card-order'>
-                                    <p>image</p>
-                                </div>
-                            </Col>
-                            <Col flex="auto">
-                                <div className='wooden-card-order'>
-                                    <Space wrap className='wooden-content'>
-                                        <p className='wooden-item'>Krabby Patty</p>
-                                        <Button type="default" shape="circle" icon={<MinusOutlined />} size='small' />
-                                        <p className='wooden-font'>123</p>
-                                        <Button type="default" shape="circle" icon={<PlusOutlined />} size='small' />
-                                    </Space>
-                                </div>
-                            </Col>
-                        </Row>
+                        {cartItems.map(item => (
+                            <Row>
+                                <Col flex="50px">
+                                    <div className='bubble-card-order'>
+                                        <p><img src={item.image} alt={item.name} height="30" width="30" /></p>
+                                    </div>
+                                </Col>
+                                <Col flex="auto">
+                                    <div className='wooden-card-order'>
+                                        <Space wrap className='wooden-content'>
+                                            <p className='wooden-item'>{item.name}</p>
+                                            <Button type="default" shape="circle" icon={<MinusOutlined />} onClick={() => handleDecreament(item)} size='small' />
+                                            <p className='wooden-font'>{item.quantity}</p>
+                                            <Button type="default" shape="circle" icon={<PlusOutlined />} onClick={() => handleIncreament(item)} size='small' />
+                                        </Space>
+                                    </div>
+                                </Col>
+                            </Row>
+                        ))}
+
                     </div>
                     <div className='price-order'>
                         <Row>
@@ -46,23 +83,23 @@ const ListOrder = () => {
                                 Subtotal
                             </Col>
                             <Col className='subtotal-price'>
-                                Rp.123
+                                Rp. {subTotal.toLocaleString().replace(',', '.')}
                             </Col>
                         </Row>
-                        <Row>
+                        {/* <Row>
                             <Col className='subtotal'>
                                 Discount
                             </Col>
                             <Col className='subtotal-price'>
                                 Rp.123
                             </Col>
-                        </Row>
+                        </Row> */}
                         <Row>
                             <Col className='subtotal'>
                                 Tax
                             </Col>
                             <Col className='subtotal-price'>
-                                Rp.123
+                                Rp. {((subTotal / 100) * 10).toFixed(2).toLocaleString().replace(',', '.')}
                             </Col>
                         </Row>
                         <Row>
@@ -74,7 +111,7 @@ const ListOrder = () => {
                                 Total Price
                             </Col>
                             <Col className='subtotal-price'>
-                                Rp.123
+                                Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}
                             </Col>
                         </Row>
                     </div>
