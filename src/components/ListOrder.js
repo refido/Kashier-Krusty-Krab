@@ -3,6 +3,7 @@ import { PlusOutlined, MinusOutlined } from '@ant-design/icons'
 import { Content } from 'antd/es/layout/layout'
 import React from 'react'
 import "../styles/ListOrder.css"
+import ButtonPayment from '../components/modal-payment';
 const ListOrder = () => {
     return (
         <Col span={6} push={16}>
@@ -77,11 +78,10 @@ const ListOrder = () => {
                             </Col>
                         </Row>
                     </div>
-                    <div>
-                        <button className='button-confirm'>Confirm</button>
+                    <div className='button-confirm'>
+                        <ButtonPayment />
                     </div>
                     <div className='starfish'>
-
                     </div>
                 </Content>
             </Layout>
