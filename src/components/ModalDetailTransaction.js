@@ -72,7 +72,8 @@ const ModalDetailTransaction = () => {
                         </tr>
                     </table>
                 </div>
-            </Modal></div>
+            </Modal>
+        </div>
     );
 };
 
