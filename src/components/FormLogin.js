@@ -1,6 +1,6 @@
 import { message } from "antd";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router";
 import picture from "../logo/Squidward&Patrick.png";
 import "../styles/LoginForm.css";
@@ -10,7 +10,7 @@ function FormLogin() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = useCallback(async (e) => {
         e.preventDefault()
         try {
             const res = await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/users/login", { userId: username, password: password })
@@ -19,24 +19,24 @@ function FormLogin() {
             } else {
                 message.success("Success login")
                 localStorage.setItem("auth", JSON.stringify(res.data));
-                navigate("/Home");
+                navigate("/cashier");
             }
         } catch (error) {
             message.error("Something went wrong")
             console.log(error);
         }
-    }
+    }, [navigate, username, password])
 
     useEffect(() => {
         if (localStorage.getItem("auth")) {
-            localStorage.getItem("auth"); navigate("/Home");
+            localStorage.getItem("auth"); navigate("/cashier");
         }
     }, [navigate]);
 
     return (
         <div className="formLayout">
             <div className="pict">
-                <img src={picture} style={{ marginTop: 5, width: 401, height: 402 }}></img>
+                <img alt="" src={picture} style={{ marginTop: 5, width: 401, height: 402 }}></img>
             </div>
             <div className="form">
                 <h1>Krusty Krab</h1>

@@ -10,6 +10,7 @@ import setting from '../logo/settings.png';
 import profile from '../logo/profile.png';
 import avatar from '../logo/avatar.png';
 import '../styles/SidebarMenu.css';
+import { Link } from 'react-router-dom'
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -42,19 +43,19 @@ const App = () => {
                     
                     mode="inline">
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <img src={logoKrustyKrab} style={{ width: 65, height: 57, marginTop: 10 }} />
+                        <img alt="" src={logoKrustyKrab} style={{ width: 65, height: 57, marginTop: 10 }} />
                     </div>
+                    <Menu.Item key="/1" style={{ paddingLeft: 10, marginTop: 10 }}>
+                        <img alt="" src={cashier} style={{ width: 42, height: 37 }} />
+                        <Link to='/cashier' />
+                    </Menu.Item>
                     <Menu.Item key="/2" style={{ paddingLeft: 10, marginTop: 10 }}>
-                        <img src={product} style={{ width: 45, height: 37 }} />
-                        {/* <Link to='/admin/login' /> */}
+                        <img alt="" src={product} style={{ width: 45, height: 37 }} />
+                        <Link to='/menu-item' />
                     </Menu.Item>
-                    <Menu.Item key="/3" style={{ paddingLeft: 10, marginTop: 10 }}>
-                        <img src={cashier} style={{ width: 42, height: 37 }} />
-                        {/* <Link to='/admin/login' /> */}
-                    </Menu.Item>
-                    <Menu.Item key="/4" style={{ paddingLeft: 9, marginTop: 10 }}>
-                        <img src={transaction} style={{ width: 39, height: 35 }} />
-                        {/* <Link to='/admin/login' /> */}
+                    <Menu.Item key="/3" style={{ paddingLeft: 9, marginTop: 10 }}>
+                        <img alt="" src={transaction} style={{ width: 39, height: 35 }} />
+                        <Link to='/history-payment' />
                     </Menu.Item>
                 </Menu>
             </div>
@@ -63,17 +64,16 @@ const App = () => {
                 className='side-menu2'
                     onClick={onClick}
                     mode="inline">
-                    <Menu.Item key="/5" style={{ paddingLeft: 12, marginTop: 5 }}>
-
-                        <img src={setting} style={{ width: 34, height: 38 }} />
+                    <Menu.Item key="/4" style={{ paddingLeft: 12, marginTop: 5 }}>
+                        <img alt="" src={setting} style={{ width: 34, height: 38 }} />
                         {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
-                    <Menu.Item key="/6" style={{ paddingLeft: 12, marginTop: 5 }}
+                    <Menu.Item key="/5" style={{ paddingLeft: 12, marginTop: 5 }}
                         onClick={() => {
                             localStorage.removeItem("auth");
                             navigate("/");
                         }}>
-                        <img src={logout} style={{ width: 34, height: 37 }} />
+                        <img alt="" src={logout} style={{ width: 34, height: 37 }} />
                     </Menu.Item>
                     <Menu.Divider />
 

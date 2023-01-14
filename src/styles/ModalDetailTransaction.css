@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+@font-face {
+    font-family: spongebob;
+    src: url(../../public/font/Spongeboy_Me_Bob.ttf);
+}
+
+* {
+    font-family: 'Poppins';
+}
+
+.detail .ant-modal-content {
+    background: white;
+    border-radius: 50px;
+}
+
+.detailTitle{
+    margin-top: 15px;
+    font-family: 'spongebob';
+    color: black;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.transaction-table {
+    width: 60vh;
+    margin-top: 20px;
+}
+
+.purchasingList {
+    margin-top: 8px;
+    display: flex;
+    width: 60vh;
+}
+
+.value {
+    text-align: end;
+}
+
+.purchase {
+    border-collapse: collapse;
+    border: 2px solid black;
+    width: 60vh;
+    border-radius: 20px !important;
+    /* overflow: hidden; */
+}
+
+.purchase th{
+    border-bottom: 1px solid;
+    border-top: 1px solid;
+    border-radius: 20px !important;
+}
+
+.prow {
+    border-top: 1px solid;
+}
+
+td{
+    padding-top: 5px;
+}
