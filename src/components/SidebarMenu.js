@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu } from 'antd';
+import { useNavigate } from 'react-router-dom';
 import logoKrustyKrab from '../logo/logoKrustyKrab.png';
 import cashier from '../logo/cashier.png';
 import product from '../logo/product.png';
@@ -26,10 +27,13 @@ const items = [
     getItem(<img src={setting} style={{ width: 33, height: 35 }} />, '5'),
     getItem(<img src={logout} style={{ width: 33, height: 35 }} />, '6'),
 ];
+
 const App = () => {
     const onClick = (e) => {
         console.log('click ', e);
     };
+    const navigate = useNavigate();
+
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
             <div>
@@ -79,9 +83,12 @@ const App = () => {
                         <img src={setting} style={{ width: 34, height: 38 }} />
                         {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
-                    <Menu.Item key="/6" style={{ paddingLeft: 12, marginTop: 5 }}>
+                    <Menu.Item key="/6" style={{ paddingLeft: 12, marginTop: 5 }}
+                        onClick={() => {
+                            localStorage.removeItem("auth");
+                            navigate("/");
+                        }}>
                         <img src={logout} style={{ width: 34, height: 37 }} />
-                        {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
                     <Menu.Divider />
 
