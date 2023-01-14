@@ -1,4 +1,13 @@
-import './App.css';
+// import ButtonPayment from './components/modal-payment';
+// import ModalDetailTransaction from './components/ModalDetailTransaction';
+// import ModalAddProduct from './components/ModalAddProduct';
+// import ModalDetailProduct from './components/ModalDetailProduct';
+
+        {/* <ButtonPayment></ButtonPayment> */}
+        {/* <ModalDetailTransaction></ModalDetailTransaction> */}
+        {/* <ModalAddProduct></ModalAddProduct> */}
+        {/* <ModalDetailProduct></ModalDetailProduct> */}
+
 import Login from './pages/Login';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Homepage from './pages/Homepage';
