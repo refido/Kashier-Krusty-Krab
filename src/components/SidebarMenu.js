@@ -9,6 +9,7 @@ import logout from '../logo/logout.png';
 import setting from '../logo/settings.png';
 import profile from '../logo/profile.png';
 import avatar from '../logo/avatar.png';
+import '../styles/SidebarMenu.css';
 
 function getItem(label, key, icon, children, type) {
     return {
@@ -35,17 +36,10 @@ const App = () => {
     const navigate = useNavigate();
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+        <div className='sidebar-container'>
             <div>
-                <Menu
-                    onClick={onClick}
-                    style={{
-                        height: '65vh',
-                        width: 72,
-                        left: 0,
-                        top: 0,
-                        background: '#FEF56D',
-                    }}
+                <Menu className='side-menu'
+                    
                     mode="inline">
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img src={logoKrustyKrab} style={{ width: 65, height: 57, marginTop: 10 }} />
@@ -66,17 +60,8 @@ const App = () => {
             </div>
             <div>
                 <Menu
+                className='side-menu2'
                     onClick={onClick}
-                    style={{
-                        height: '35vh',
-                        width: 72,
-                        left: 0,
-                        background: '#FEF56D',
-                        marginBottom: 'auto',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'end',
-                    }}
                     mode="inline">
                     <Menu.Item key="/5" style={{ paddingLeft: 12, marginTop: 5 }}>
 
@@ -92,12 +77,12 @@ const App = () => {
                     </Menu.Item>
                     <Menu.Divider />
 
-                    <Menu.Item key="/profile" style={{ paddingLeft: 12, marginTop: 5 }}>
+                    <Menu.Item key="/profile" style={{ paddingLeft: 12, paddingRight:0, marginTop: 5 }}>
                         <img src={avatar} style={{ width: 36, height: 35 }} />
                         {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
-                        <img src={profile} style={{ width: 29, height: 10 }} />
+                    <div style={{ paddingLeft: 0, display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+                        <img src={profile} style={{ width: 23, height: 9 }} />
                     </div>
                 </Menu>
             </div>

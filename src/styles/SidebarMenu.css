@@ -1,0 +1,42 @@
+.sidebar-container {
+    display: 'flex';
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+.side-menu {
+    height: 65vh;
+    width: 68px;
+    background: #FEF56D;
+}
+
+.side-menu2 {
+    height: 35vh;
+    width: 68px;
+    background: #FEF56D;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.ant-menu-item .ant-menu-item-only-child .menu-item1{
+    padding-left: 0;
+    margin: 0;
+}
+
+.menu-item1 {
+    /* padding-left: 10;
+    margin-top: 10; */
+}
+
+.menu-item2 {
+    /* padding-left: 12;
+    margin-top: 5; */
+}
+
+.profile-item {
+    display: flex;
+    justify-content: 'center';
+    margin-bottom: 10;
+}
