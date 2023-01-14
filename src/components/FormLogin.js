@@ -1,22 +1,26 @@
 import { message } from "antd";
 import axios from "axios";
 import { useEffect, useState, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import picture from "../logo/Squidward&Patrick.png";
 import "../styles/LoginForm.css";
 
 function FormLogin() {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault()
         try {
+            dispatch({type: "SHOW_LOADING"});
             const res = await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/users/login", { userId: username, password: password })
             if (res.data.message === "Login Fail") {
                 message.error("Something went wrong")
             } else {
+                dispatch({ type: "HIDE_LOADING" });
                 message.success("Success login")
                 localStorage.setItem("auth", JSON.stringify(res.data));
                 navigate("/cashier");
@@ -25,7 +29,7 @@ function FormLogin() {
             message.error("Something went wrong")
             console.log(error);
         }
-    }, [navigate, username, password])
+    }, [navigate, username, password, dispatch])
 
     useEffect(() => {
         if (localStorage.getItem("auth")) {
