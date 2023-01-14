@@ -13,6 +13,7 @@ const ModalDetailProduct = () => {
             onOk={() => { setOpenModalDetailProduct(false) }}
             onCancel={() => setOpenModalDetailProduct(false)}
             width={450}
+            footer={null}
         >
             <div className='center-div'>
                 <h3>Add Product</h3>
@@ -53,6 +54,14 @@ const ModalDetailProduct = () => {
                                 <option value="Out of Stock">Out of Stock</option>
                             </select>
                         </div>
+                    </div>
+                    <div className='modal-footer'>
+                        <button type="button" className='modal-cancel-button' onClick={() => setOpenModalDetailProduct(false)}>
+                            <span className='modal-button-span'>Cancel</span>
+                        </button>
+                        <button type="button" className='modal-submit-button' onClick={() => setOpenModalDetailProduct(false)}>
+                            <span className='modal-button-span'>Submit</span>
+                        </button>
                     </div>
                 </form>
             </div>

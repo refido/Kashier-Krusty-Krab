@@ -14,23 +14,57 @@
     border-radius: 500px;
 }
 
-button.ant-btn.css-dev-only-do-not-override-k83k30.ant-btn-default {
-    background-color: transparent;
+.modal-footer {
+    background: transparent;
+    justify-content: center;
+    align-items: center;
     border: none;
-    color: white;
 }
 
-button.ant-btn.css-dev-only-do-not-override-k83k30.ant-btn-default span {
+.modal-footer .payment{
+    background: transparent;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.modal-button-span {
     font-weight: bold;
 }
 
-button.ant-btn.css-dev-only-do-not-override-k83k30.ant-btn-primary {
+.modal-cancel-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    width: 130px;
+    height: 40px;
+}
+
+.modal-submit-button {
     background-color: #FEF56D;
     border: none;
     color: #BA6400;
     border-radius: 50px;
-    /* width: 100px;
-    height: 40px; */
+    width: 130px;
+    height: 40px;
+}
+
+.modal-print-button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    height: 40px;
+    width: 100%;
+}
+
+.modal-other-button {
+    background-color: #FEF56D;
+    border: none;
+    color: #BA6400;
+    border-radius: 50px;
+    height: 40px;
+    width: 100%;
 }
 
 button.ant-btn.css-dev-only-do-not-override-k83k30.ant-btn-primary span {
@@ -95,7 +129,8 @@ h3 {
     height: 40px;
 }
 
-.input-form select, .input-price {
+.input-form select,
+.input-price {
     border: 2px solid #000000;
     border-radius: 50px;
     display: flex;
@@ -107,16 +142,16 @@ h3 {
     height: 40px;
 }
 
-h6{
+h6 {
     color: white;
 }
 
-h4{
+h4 {
     color: white;
     font-weight: bold;
 }
 
-.custName{
+.custName {
     color: #000000;
     font-weight: bold;
 }

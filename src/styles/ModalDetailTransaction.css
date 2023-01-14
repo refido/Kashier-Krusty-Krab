@@ -59,4 +59,22 @@
 
 td{
     padding-top: 5px;
+    border-radius: 20px !important;
+}
+
+.transactiondetail-footer{
+    margin-top: 20px;
+    width: 90%;
+    border: none;
+    display: flex;
+    justify-content: end;
+}
+
+.modal-submit-button {
+    background-color: #FEF56D;
+    border: none;
+    color: #BA6400;
+    border-radius: 50px;
+    width: 130px;
+    height: 40px;
 }
