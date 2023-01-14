@@ -1,5 +1,5 @@
 import DefaultLayout from '../components/DefaultLayout'
-import '../styles/itempage.css'
+import '../styles/ItemPage.css'
 import React, { useEffect, useRef, useState } from 'react';
 import { Button, Input, Modal, Space, Table } from 'antd';
 import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
