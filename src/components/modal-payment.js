@@ -49,7 +49,11 @@ const ButtonPayment = () => {
     };
     return (
         <>
-            <Button type="primary" onClick={() => setOpen(true)}>
+            <Button 
+                type="primary" 
+                onClick={() => setOpen(true)}
+                disabled={cartItems.length === 0}
+                >
                 Confirm
             </Button>
             <Modal
