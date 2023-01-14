@@ -5,6 +5,8 @@ import { Button, Input, Modal, Space, Table } from 'antd';
 import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
+import ModalAddProduct from '../components/ModalAddProduct';
+import ModalDetailProduct from '../components/ModalDetailProduct';
 
 function Itempage() {
     const [modalData, setModalData] = useState(null)
@@ -116,23 +118,23 @@ function Itempage() {
                 text
             ),
     });
-    
+
     const getAllItems = async () => {
         try {
-          const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item/");
-          setItemsData(data);
-          console.log(data);
+            const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item/");
+            setItemsData(data);
+            console.log(data);
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
-      };
-      //useEffect
-      useEffect(() => {
+    };
+    //useEffect
+    useEffect(() => {
         getAllItems();
         //eslint-disable-next-line
-      }, []);
+    }, []);
 
-      console.log(itemsData);
+    console.log(itemsData);
 
     const columns = [
         {
@@ -216,7 +218,7 @@ function Itempage() {
     return (
         <DefaultLayout>
             <div className='block-head'>
-                <p style={{ fontSize: 25 }}>Transaction History</p>
+                <p style={{ fontSize: 25 }}>List Product</p>
             </div>
             <div className='block-head'>
                 <button className='add-button' onClick={() => setOpen(true)}><span>&#43;</span> Add Product</button>
@@ -233,11 +235,13 @@ function Itempage() {
                     };
                 }} />
             <Modal open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}>
-                {modalData && (
+                <ModalAddProduct />
+                <ModalDetailProduct/>
+                {/* {modalData && (
                     <div>
                         {modalData.product}
                     </div>
-                )}
+                )} */}
             </Modal>
         </DefaultLayout>
     )

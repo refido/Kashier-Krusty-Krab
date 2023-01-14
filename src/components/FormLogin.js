@@ -19,7 +19,7 @@ function FormLogin() {
             } else {
                 message.success("Success login")
                 localStorage.setItem("auth", JSON.stringify(res.data));
-                navigate("/Home");
+                navigate("/cashier");
             }
         } catch (error) {
             message.error("Something went wrong")
@@ -29,7 +29,7 @@ function FormLogin() {
 
     useEffect(() => {
         if (localStorage.getItem("auth")) {
-            localStorage.getItem("auth"); navigate("/Home");
+            localStorage.getItem("auth"); navigate("/cashier");
         }
     }, [navigate]);
 

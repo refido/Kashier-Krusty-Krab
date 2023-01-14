@@ -4,6 +4,7 @@ import { Button, Input, Modal, Space, Table } from 'antd';
 import { ProfileOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
+import ModalDetailTransaction from '../components/ModalDetailTransaction';
 
 function Historypage() {
 
@@ -192,11 +193,12 @@ function Historypage() {
                     };
                 }} />
             <Modal open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}>
-                {modalData && (
+                <ModalDetailTransaction />
+                {/* {modalData && (
                     <div>
                         {modalData._id}
                     </div>
-                )}
+                )} */}
             </Modal>
         </DefaultLayout>
     )
