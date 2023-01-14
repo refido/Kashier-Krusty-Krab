@@ -13,6 +13,7 @@ const ModalDetailTransaction = () => {
                 okText="Print"
                 onOk={() => { setOpenModalDetailTransaction(false) }}
                 width={490}
+                footer={null}
             >
                 <div className='center-div'>
                     <h3 className='detailTitle'>Detail Transaction</h3>
@@ -71,8 +72,15 @@ const ModalDetailTransaction = () => {
                             <th>Rp 20.000</th>
                         </tr>
                     </table>
+
+                    <div className='transactiondetail-footer'>
+                        <button type="button" className='modal-submit-button' onClick={() => setOpenModalDetailTransaction(false)}>
+                            <span className='modal-button-span'>Print</span>
+                        </button>
+                    </div>
                 </div>
-            </Modal></div>
+            </Modal>
+        </div>
     );
 };
 

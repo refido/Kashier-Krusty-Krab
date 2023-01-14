@@ -4,14 +4,18 @@ import { Button, Input, Modal, Space, Table } from 'antd';
 import { ProfileOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
-import ModalDetailTransaction from '../components/ModalDetailTransaction';
+import moment from 'moment';
 
 function Historypage() {
 
     const [open, setOpen] = useState(false)
     const [modalData, setModalData] = useState(null)
-
     const [billsData, setBillsData] = useState([]);
+    const [subTotal, setSubTotal] = useState()
+
+
+
+
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -123,7 +127,6 @@ function Historypage() {
         try {
             const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/bill/");
             setBillsData(data);
-            console.log(data);
         } catch (error) {
             console.log(error);
         }
@@ -176,6 +179,13 @@ function Historypage() {
         },
     ];
 
+    const countSubTotal = (record) => {
+        let temp = 0;
+        (record.cartItems).forEach((item) => (temp = temp + item.price * item.quantity));
+        setSubTotal(temp);
+    }
+
+
     return (
         <DefaultLayout>
             <div className='block-head'>
@@ -188,18 +198,81 @@ function Historypage() {
                     return {
                         onClick: () => {
                             setModalData(record);
+                            countSubTotal(record)
                             setOpen(true);
                         }
                     };
                 }} />
-            <Modal open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}>
-                <ModalDetailTransaction />
-                {/* {modalData && (
-                    <div>
-                        {modalData._id}
-                    </div>
-                )} */}
-            </Modal>
+
+            {modalData && (
+                <div className='detail'>
+                    <Modal
+                        className="detail"
+                        centered
+                        open={open}
+                        okText="Print"
+                        onOk={() => { setOpen(false) }}
+                        onCancel={() => setOpen(false)}
+                        width={490}
+                    >
+                        <div className='center-div'>
+                            <h3 className='detailTitle'>Detail Transaction</h3>
+                            <table className='transaction-table'>
+                                <tr>
+                                    <td>ID Transaction</td>
+                                    <td className='value'>{modalData._id}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date & Time</td>
+                                    <td className='value'>{moment(modalData.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Name</td>
+                                    <td className='value'>{modalData.name}</td>
+                                </tr>
+                            </table>
+                            <p className='purchasingList'>Purchasing List</p>
+
+                            <table className='purchase'>
+                                <tr>
+                                    <th>Items</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total Price</th>
+                                </tr>
+                                {
+                                    (modalData.cartItems).map(item => (
+                                        <tr>
+                                            <td>{item.name}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>Rp {item.price.toLocaleString().replace(',', '.')}</td>
+                                            <td>Rp {item.price * item.quantity}</td>
+                                        </tr>
+                                    ))
+
+                                }
+                                <tr className='prow'>
+                                    <td colSpan={4}>Subtotal</td>
+                                    <td>Rp. {subTotal}</td>
+                                </tr>
+                                {/* <tr>
+                                    <td colSpan={4}>Discount</td>
+                                    <td>Rp -</td>
+                                </tr> */}
+                                <tr>
+                                    <td colSpan={4}>Tax</td>
+                                    <td>Rp. {(subTotal/100)*10}</td>
+                                </tr>
+                                <tr>
+                                    <th colSpan={4}>Total Price</th>
+                                    <th>Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
+                                </tr>
+                            </table>
+                        </div>
+                    </Modal>
+                </div>
+            )}
+
         </DefaultLayout>
     )
 }
