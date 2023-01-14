@@ -9,13 +9,38 @@
     font-family: 'Poppins';
 }
 
-.formLayout {
-    display: flex;
-    justify-content: row;
+.login-layout {
+    min-height: 100vh;
+    min-width: 100vw;
+    background: linear-gradient(180deg, #83EAF3 0%, #77E1EF 26.95%, #40AEDF 67.7%, #2EA0D7 100%);
 }
 
-.pict{
-    width: 55%;
+.container-layout {
+    min-height: 100vh;
+    min-width: 100vw;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    background-image: url('/public/background-bunga.png');
+    /* background-repeat: no-repeat; */
+    background-repeat: repeat-x;
+}
+
+.logo-login {
+    margin-left: 80px;
+    margin-top: 40px;
+    width: 73px;
+    height: 68px;
+}
+
+.formLayout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pict {
+    width: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,23 +60,19 @@ h1 {
     font-style: normal;
     font-weight: 400;
     font-size: 55px;
-    /* display: flex;
-    align-items: center; */
     vertical-align: middle;
 
 }
 
-h3 {
+.login-sub-title {
     font-family: 'spongebob';
     color: #D93830;
     font-style: normal;
     font-weight: 400;
     font-size: 35px;
-    /* display: flex;
-    align-items: center; */
 }
 
-.input-form {
+.input-form-login {
     padding: 10;
     /* justify-content: left; */
     display: flex;
@@ -60,7 +81,7 @@ h3 {
     /* margin-left: 10% */
 }
 
-.input-form label {
+.input-form-login label {
     /* margin-left: 20%; */
     font-weight: 500;
     color: white;
@@ -68,7 +89,7 @@ h3 {
     letter-spacing: 0.05em;
 }
 
-.input-form input {
+.input-form-login input {
     border: 2px solid #000000;
     border-radius: 50px;
     display: flex;
@@ -97,7 +118,8 @@ h3 {
     font-size: 1rem;
     line-height: 36px;
     font-weight: 700;
-    color: #BA6400;;
+    color: #BA6400;
+    ;
     line-height: 36px;
     letter-spacing: 0.05em;
     /* identical to box height */
@@ -107,7 +129,7 @@ h3 {
     text-align: center;
 }
 
-.form span{
+.form span {
     text-align: center;
     font-weight: bold;
     color: white;

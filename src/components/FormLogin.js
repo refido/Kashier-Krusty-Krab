@@ -40,10 +40,10 @@ function FormLogin() {
             </div>
             <div className="form">
                 <h1>Krusty Krab</h1>
-                <h3>Cashier Login</h3>
+                <h3 className="login-sub-title">Cashier Login</h3>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className="container-form">
-                        <div className="input-form">
+                        <div className="input-form-login">
                             <label>Username</label>
                             <input
                                 type="text"
@@ -51,7 +51,7 @@ function FormLogin() {
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)} />
                         </div>
-                        <div className="input-form">
+                        <div className="input-form-login">
                             <label>Password</label>
                             <input
                                 type="password"
@@ -59,12 +59,11 @@ function FormLogin() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)} />
                         </div>
-                        <div className="input-form">
+                        <div className="input-form-login">
                             <button>Login</button>
                         </div>
                     </div>
                 </form>
-                <span>Forgot Password</span>
             </div>
         </div >
     );
