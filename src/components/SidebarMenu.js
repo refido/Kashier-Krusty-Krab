@@ -9,7 +9,7 @@ import logout from '../logo/logout.png';
 import setting from '../logo/settings.png';
 import profile from '../logo/profile.png';
 import avatar from '../logo/avatar.png';
-import '../styles/SidebarMenu.css';
+import style from '../styles/SidebarMenu.css';
 import { Link } from 'react-router-dom'
 
 function getItem(label, key, icon, children, type) {
