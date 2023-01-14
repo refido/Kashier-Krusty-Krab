@@ -36,7 +36,7 @@ function FormLogin() {
     return (
         <div className="formLayout">
             <div className="pict">
-                <img src={picture} style={{ marginTop: 5, width: 401, height: 402 }}></img>
+                <img alt="" src={picture} style={{ marginTop: 5, width: 401, height: 402 }}></img>
             </div>
             <div className="form">
                 <h1>Krusty Krab</h1>

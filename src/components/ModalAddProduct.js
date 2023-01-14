@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Modal, InputNumber, Space } from 'antd';
+import { Modal } from 'antd';
 import '../styles/ModalPayment.css';
 
 const ModalAddProduct = () => {
@@ -17,7 +17,7 @@ const ModalAddProduct = () => {
             <div className='center-div'>
                 <h3>Add Product</h3>
 
-                <img src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
+                <img alt="" src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
                 <form >
                     <div className="container-form">
                         <div className="input-form">
