@@ -10,9 +10,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <ButtonPayment></ButtonPayment> */}
-        {/* <ModalDetailTransaction></ModalDetailTransaction> */}
+        <ModalDetailTransaction></ModalDetailTransaction>
         {/* <ModalAddProduct></ModalAddProduct> */}
-        <ModalDetailProduct></ModalDetailProduct>
+        {/* <ModalDetailProduct></ModalDetailProduct> */}
       </header>
     </div>
   );
