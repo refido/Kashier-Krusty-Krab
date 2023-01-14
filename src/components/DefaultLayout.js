@@ -5,11 +5,15 @@ import "../styles/KashierItemComponent.css"
 import "../styles/ListOrder.css"
 import ListOrder from "./ListOrder";
 import SidebarMenu from '../components/SidebarMenu';
+import Spinner from "./Spinner";
 import styled from 'styled-components';
+import { useSelector } from 'react-redux'
 
 function DefaultLayout({ children }) {
+  const { loading } = useSelector((state) => state.rootReducer);
   return (
     <Layout>
+      {loading && <Spinner />}
       <div className='background'>
         <div className='flower'>
           <Row>

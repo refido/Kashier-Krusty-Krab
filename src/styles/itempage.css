@@ -1,0 +1,26 @@
+.add-button {
+    /* Auto layout */
+
+    color: #BA6400;
+    font-weight: 700;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 32px;
+    gap: 4px;
+
+    width: 194px;
+    height: 48px;
+
+    background: #FEF56D;
+    border-radius: 24px;
+    border: none;
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
