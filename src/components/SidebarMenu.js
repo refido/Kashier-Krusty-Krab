@@ -9,7 +9,26 @@ import logout from '../logo/logout.png';
 import setting from '../logo/settings.png';
 import profile from '../logo/profile.png';
 import avatar from '../logo/avatar.png';
+import style from '../styles/SidebarMenu.css';
 import { Link } from 'react-router-dom'
+
+function getItem(label, key, icon, children, type) {
+    return {
+        key,
+        icon,
+        children,
+        label,
+        type,
+    };
+}
+const items = [
+    getItem(<img src={logoKrustyKrab} style={{ width: 30, height: 30, }} />),
+    getItem(<img src={product} style={{ width: 38, height: 35 }} />, '2'),
+    getItem(<img src={cashier} style={{ width: 35, height: 35 }} />, '3'),
+    getItem(<img src={transaction} style={{ width: 35, height: 33 }} />, '4'),
+    getItem(<img src={setting} style={{ width: 33, height: 35 }} />, '5'),
+    getItem(<img src={logout} style={{ width: 33, height: 35 }} />, '6'),
+];
 
 const App = () => {
     const onClick = (e) => {
@@ -18,17 +37,10 @@ const App = () => {
     const navigate = useNavigate();
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'column', height: '100%' }}>
+        <div className='sidebar-container'>
             <div>
-                <Menu
-                    onClick={onClick}
-                    style={{
-                        height: '65vh',
-                        width: 72,
-                        left: 0,
-                        top: 0,
-                        background: '#FEF56D',
-                    }}
+                <Menu className='side-menu'
+                    
                     mode="inline">
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img alt="" src={logoKrustyKrab} style={{ width: 65, height: 57, marginTop: 10 }} />
@@ -49,17 +61,8 @@ const App = () => {
             </div>
             <div>
                 <Menu
+                className='side-menu2'
                     onClick={onClick}
-                    style={{
-                        height: '35vh',
-                        width: 72,
-                        left: 0,
-                        background: '#FEF56D',
-                        marginBottom: 'auto',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        justifyContent: 'end',
-                    }}
                     mode="inline">
                     <Menu.Item key="/4" style={{ paddingLeft: 12, marginTop: 5 }}>
                         <img alt="" src={setting} style={{ width: 34, height: 38 }} />
@@ -74,12 +77,12 @@ const App = () => {
                     </Menu.Item>
                     <Menu.Divider />
 
-                    <Menu.Item key="/profile" style={{ paddingLeft: 12, marginTop: 5 }}>
-                        <img alt="" src={avatar} style={{ width: 36, height: 35 }} />
+                    <Menu.Item key="/profile" style={{ paddingLeft: 12, paddingRight:0, marginTop: 5 }}>
+                        <img src={avatar} style={{ width: 36, height: 35 }} />
                         {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
-                    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
-                        <img alt="" src={profile} style={{ width: 29, height: 10 }} />
+                    <div style={{ paddingLeft: 0, display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
+                        <img src={profile} style={{ width: 23, height: 9 }} />
                     </div>
                 </Menu>
             </div>
