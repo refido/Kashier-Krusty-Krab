@@ -6,6 +6,7 @@ const ModalAddProduct = (open) => {
     const [openModalAddProduct, setOpenModalAddProduct] = useState(open.setOpen);
     return (
         <Modal
+            className='primary'
             centered
             open={openModalAddProduct}
             okText="Submit"
