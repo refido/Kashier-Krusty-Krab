@@ -49,7 +49,9 @@ const ListOrder = () => {
                 >
                     <Row>
                         <Col span={12}>
-                            List Order
+                            <div className='block-head'>
+                                <p>List Order</p>
+                            </div>
                         </Col>
                         <Col span={12}>
                             0000000000000

@@ -214,6 +214,7 @@ function Historypage() {
                         okText="Print"
                         onOk={() => { setOpen(false) }}
                         onCancel={() => setOpen(false)}
+                        footer={null}
                         width={490}
                     >
                         <div className='center-div'>
@@ -262,13 +263,18 @@ function Historypage() {
                                 </tr> */}
                                 <tr>
                                     <td colSpan={4}>Tax</td>
-                                    <td>Rp. {(subTotal/100)*10}</td>
+                                    <td>Rp. {(subTotal / 100) * 10}</td>
                                 </tr>
                                 <tr>
                                     <th colSpan={4}>Total Price</th>
                                     <th>Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
                                 </tr>
                             </table>
+                            <div className='transactiondetail-footer'>
+                                <button type="button" className='modal-submit-button' onClick={() => setOpen(false)}>
+                                    <span className='modal-button-span'>Print</span>
+                                </button>
+                            </div>
                         </div>
                     </Modal>
                 </div>
