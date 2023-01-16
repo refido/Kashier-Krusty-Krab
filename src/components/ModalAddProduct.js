@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Modal } from 'antd';
 import '../styles/ModalPayment.css';
 
-const ModalAddProduct = () => {
-    const [openModalAddProduct, setOpenModalAddProduct] = useState(true);
+const ModalAddProduct = (open) => {
+    const [openModalAddProduct, setOpenModalAddProduct] = useState(open.setOpen);
     return (
         <Modal
             className='primary'
