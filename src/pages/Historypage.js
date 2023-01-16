@@ -5,8 +5,12 @@ import { ProfileOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
 import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import '../styles/ModalDetailTransaction.css';
 
 function Historypage() {
+
+    const dispatch = useDispatch()
 
     const [open, setOpen] = useState(false)
     const [modalData, setModalData] = useState(null)
@@ -125,8 +129,10 @@ function Historypage() {
 
     const getAllBills = async () => {
         try {
+            dispatch({type: "SHOW_LOADING"})
             const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/bill/");
             setBillsData(data);
+            dispatch({type: "HIDE_LOADING"})
         } catch (error) {
             console.log(error);
         }
@@ -139,10 +145,10 @@ function Historypage() {
 
     const columns = [
         {
-            title: 'ID Transaction',
-            dataIndex: '_id',
-            key: '_id',
-            sorter: (a, b) => a.key - b.key,
+            title: 'Number',
+            dataIndex: 'number',
+            key: 'number',
+            render: (text, record, index) => index + 1,
         },
         {
             title: 'Customer Name',
@@ -193,7 +199,7 @@ function Historypage() {
             </div>
             <Table
                 columns={columns}
-                dataSource={billsData}
+                dataSource={billsData.map((item, index) => ({...item, number: index + 1}))}
                 onRow={(record) => {
                     return {
                         onClick: () => {
@@ -228,7 +234,7 @@ function Historypage() {
                                 </tr>
                                 <tr>
                                     <td>Customer Name</td>
-                                    <td className='value'>{modalData.name}</td>
+                                    <td className='value'>{modalData.customerName}</td>
                                 </tr>
                             </table>
                             <p className='purchasingList'>Purchasing List</p>
