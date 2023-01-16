@@ -9,8 +9,17 @@ import Spinner from "./Spinner";
 import styled from 'styled-components';
 import { useSelector } from 'react-redux'
 
-function DefaultLayout({ children }) {
+function DefaultLayout({ listOrder, children }) {
   const { loading } = useSelector((state) => state.rootReducer);
+  let setPull = 0;
+  let setSpan = 22;
+  let setwidth = 91;
+  if (listOrder) {
+    setPull = 6;
+    setSpan = 16;
+    setwidth = 65;
+  }
+
   return (
     <Layout>
       {loading && <Spinner />}
@@ -20,13 +29,20 @@ function DefaultLayout({ children }) {
             <SideBar>
               <SidebarMenu />
             </SideBar>
-            <ListOrder />
-            <Col span={16} pull={6}>
+            {/* <ListOrder />   */}
+            {
+              listOrder == false
+                ? null
+                : (
+                  <ListOrder />
+                )
+            }
+            <Col span={setSpan} pull={setPull}>
               <Layout className='site-layout'>
                 <Content
                   className='site-layout-background'
                   style={{
-                    padding: 24,
+                    padding: 24, width: `${setwidth}vw`
                   }}
                 >
                   {children}

@@ -97,7 +97,7 @@ function Itempage() {
         }
     }
 
-    console.log(categoryProduct);
+
 
     const handleDelete = async (record) => {
         try {
@@ -221,7 +221,7 @@ function Itempage() {
 
     const columns = [
         {
-            title: 'Number',
+            title: 'No',
             dataIndex: 'number',
             key: 'number',
             render: (text, record, index) => index + 1,
@@ -298,10 +298,8 @@ function Itempage() {
         },
     ];
 
-    console.log(modalData);
-
     return (
-        <DefaultLayout>
+        <DefaultLayout listOrder={false}>
             <div className='block-head'>
                 <p style={{ fontSize: 25 }}>List Product</p>
             </div>
@@ -318,6 +316,7 @@ function Itempage() {
             <Table
                 columns={columns}
                 dataSource={itemsData.map((item, index) => ({...item, number: index + 1}))}
+                rowKey={record => record._id}
                 onRow={(record) => {
                     return {
                         onClick: () => {

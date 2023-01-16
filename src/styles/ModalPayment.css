@@ -9,9 +9,9 @@
     font-family: 'Poppins';
 }
 
-.ant-modal-content {
+.primary .ant-modal-content {
     background: linear-gradient(180deg, #83EAF3 0%, #77E1EF 26.95%, #40AEDF 67.7%, #2EA0D7 100%);
-    border-radius: 500px;
+    border-radius: 50px;
 }
 
 .modal-footer {
@@ -79,7 +79,7 @@ button.ant-btn.css-dev-only-do-not-override-k83k30.ant-btn-primary span {
     /* background: linear-gradient(180deg, #83EAF3 0%, #77E1EF 26.95%, #40AEDF 67.7%, #2EA0D7 100%); */
 }
 
-h3 {
+.primary h3 {
     font-family: 'spongebob';
     color: #BA6400;
     font-style: normal;

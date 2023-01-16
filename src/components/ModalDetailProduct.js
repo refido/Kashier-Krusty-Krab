@@ -6,6 +6,7 @@ const ModalDetailProduct = () => {
     const [openModalDetailProduct, setOpenModalDetailProduct] = useState(true);
     return (
         <Modal
+        className='primary'
             centered
             open={openModalDetailProduct}
             okText="Submit"
@@ -16,7 +17,7 @@ const ModalDetailProduct = () => {
             footer={null}
         >
             <div className='center-div'>
-                <h3>Add Product</h3>
+                <h3>Detail Product</h3>
 
                 <img alt="" src={process.env.PUBLIC_URL + '/image/productdetail.png'} style={{ width: 130, height: 116 }} />
                 <form >
@@ -56,9 +57,6 @@ const ModalDetailProduct = () => {
                         </div>
                     </div>
                     <div className='modal-footer'>
-                        <button type="button" className='modal-cancel-button' onClick={() => setOpenModalDetailProduct(false)}>
-                            <span className='modal-button-span'>Cancel</span>
-                        </button>
                         <button type="button" className='modal-submit-button' onClick={() => setOpenModalDetailProduct(false)}>
                             <span className='modal-button-span'>Submit</span>
                         </button>

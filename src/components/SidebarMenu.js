@@ -45,16 +45,16 @@ const App = () => {
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <img alt="" src={logoKrustyKrab} style={{ width: 65, height: 57, marginTop: 10 }} />
                     </div>
-                    <Menu.Item key="/1" style={{ paddingLeft: 10, marginTop: 10 }}>
+                    <Menu.Item key="/1" style={{ paddingLeft: 10, marginTop: 10, paddingRight:0 }}>
                         <img alt="" src={cashier} style={{ width: 42, height: 37 }} />
                         <Link to='/cashier' />
                     </Menu.Item>
-                    <Menu.Item key="/2" style={{ paddingLeft: 10, marginTop: 10 }}>
-                        <img alt="" src={product} style={{ width: 45, height: 37 }} />
+                    <Menu.Item key="/2" style={{ paddingLeft: 10, marginTop: 10, paddingRight:0  }}>
+                        <img alt="" src={product} style={{ width: 42, height: 37 }} />
                         <Link to='/menu-item' />
                     </Menu.Item>
-                    <Menu.Item key="/3" style={{ paddingLeft: 9, marginTop: 10 }}>
-                        <img alt="" src={transaction} style={{ width: 39, height: 35 }} />
+                    <Menu.Item key="/3" style={{ paddingLeft: 7, marginTop: 10, paddingRight:0  }}>
+                        <img alt="" src={transaction} style={{ width: 42, height: 37 }} />
                         <Link to='/history-payment' />
                     </Menu.Item>
                 </Menu>
@@ -65,7 +65,7 @@ const App = () => {
                     onClick={onClick}
                     mode="inline">
                     <Menu.Item key="/4" style={{ paddingLeft: 12, marginTop: 5 }}>
-                        <img alt="" src={setting} style={{ width: 34, height: 38 }} />
+                        <img alt="" src={setting} style={{ width: 34, height: 37 }} />
                         {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
                     <Menu.Item key="/5" style={{ paddingLeft: 12, marginTop: 5 }}
@@ -82,7 +82,7 @@ const App = () => {
                         {/* <Link to='/admin/login' /> */}
                     </Menu.Item>
                     <div style={{ paddingLeft: 0, display: 'flex', justifyContent: 'center', marginBottom: 10 }}>
-                        <img src={profile} style={{ width: 23, height: 9 }} />
+                        <img src={profile} style={{ width: 28, height: 9 }} />
                     </div>
                 </Menu>
             </div>
