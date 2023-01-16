@@ -1,20 +1,120 @@
 import DefaultLayout from '../components/DefaultLayout'
 import '../styles/itempage.css'
 import React, { useEffect, useRef, useState } from 'react';
-import { Button, Input, Modal, Space, Table } from 'antd';
+import { Button, Input, message, Modal, Space, Table } from 'antd';
 import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
-import ModalAddProduct from '../components/ModalAddProduct';
-import ModalDetailProduct from '../components/ModalDetailProduct';
+import { useDispatch } from 'react-redux';
 
 function Itempage() {
+    const dispatch = useDispatch()
+
+
     const [modalData, setModalData] = useState(null)
     const [itemsData, setItemsData] = useState([])
     const [open, setOpen] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+
+    const [idProduct, setIdProduct] = useState()
+    const [nameProduct, setNameProduct] = useState()
+    const [priceProduct, setPriceProduct] = useState()
+    const [categoryProduct, setCategoryProduct] = useState()
+    const [imageProduct, setImageProduct] = useState()
+
+
     const searchInput = useRef(null);
+
+
+    const getAllItems = async () => {
+        try {
+            dispatch({ type: "SHOW_LOADING" })
+            const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item/");
+            setItemsData(data);
+            dispatch({ type: "HIDE_LOADING" })
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    //useEffect
+    useEffect(() => {
+        getAllItems();
+        //eslint-disable-next-line
+        if (modalData) {
+            setIdProduct(modalData._id)
+            setNameProduct(modalData.name);
+            setPriceProduct(modalData.price);
+            setCategoryProduct(modalData.category);
+            setImageProduct(modalData.image);
+        } else if (modalData === null) {
+            setIdProduct('');
+            setNameProduct('');
+            setPriceProduct('');
+            setCategoryProduct('');
+            setImageProduct('');
+        }
+    }, [modalData]);
+
+    const handleSubmit = async () => {
+        if (idProduct) {
+            const data = {
+                itemId: idProduct,
+                name: nameProduct,
+                price: priceProduct,
+                category: categoryProduct,
+                image: imageProduct
+            }
+            try {
+                dispatch({ type: "SHOW_LOADING" });
+                await axios.put("https://kashier-krusty-krab-server.azurewebsites.net/item/update-item", data);
+                message.success("Item Updated Succesfully");
+                getAllItems();
+                dispatch({ type: "HIDE_LOADING" });
+            } catch (error) {
+                dispatch({ type: "HIDE_LOADING" });
+                message.error("Something Went Wrong");
+                console.log(error);
+            }
+        } else {
+            const data = {
+                name: nameProduct,
+                price: priceProduct,
+                category: categoryProduct,
+                image: imageProduct
+            }
+            try {
+                dispatch({ type: "SHOW_LOADING" });
+                await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/item/add-item", data);
+                message.success("Item Added Succesfully");
+                getAllItems();
+                dispatch({ type: "HIDE_LOADING" });
+            } catch (error) {
+                dispatch({ type: "HIDE_LOADING" });
+                message.error("Something Went Wrong");
+                console.log(error);
+            }
+        }
+    }
+
+    console.log(categoryProduct);
+
+    const handleDelete = async (record) => {
+        try {
+            dispatch({
+                type: "SHOW_LOADING",
+            });
+            await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/item/delete-item", { itemId: record._id });
+            message.success("Item Deleted Succesfully");
+            getAllItems();
+            dispatch({ type: "HIDE_LOADING" });
+        } catch (error) {
+            dispatch({ type: "HIDE_LOADING" });
+            message.error("Something Went Wrong");
+            console.log(error);
+        }
+    }
+
     const handleSearch = (selectedKeys, confirm, dataIndex) => {
         confirm();
         setSearchText(selectedKeys[0]);
@@ -119,29 +219,12 @@ function Itempage() {
             ),
     });
 
-    const getAllItems = async () => {
-        try {
-            const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item/");
-            setItemsData(data);
-            console.log(data);
-        } catch (error) {
-            console.log(error);
-        }
-    };
-    //useEffect
-    useEffect(() => {
-        getAllItems();
-        //eslint-disable-next-line
-    }, []);
-
-    console.log(itemsData);
-
     const columns = [
         {
-            title: 'ID Item',
-            dataIndex: '_id',
-            key: '_id',
-            sorter: (a, b) => a._id - b._id,
+            title: 'Number',
+            dataIndex: 'number',
+            key: 'number',
+            render: (text, record, index) => index + 1,
         },
         {
             title: 'Picture',
@@ -206,14 +289,16 @@ function Itempage() {
         {
             title: 'Action',
             key: 'action',
-            render: () => (
+            render: (_id, record) => (
                 <Space size="middle">
                     <span style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => setOpen(true)}><EditOutlined />Edit</span>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => setOpen(true)}><DeleteOutlined />Remove</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => handleDelete(record)}><DeleteOutlined />Remove</span>
                 </Space>
             ),
         },
     ];
+
+    console.log(modalData);
 
     return (
         <DefaultLayout>
@@ -221,27 +306,98 @@ function Itempage() {
                 <p style={{ fontSize: 25 }}>List Product</p>
             </div>
             <div className='block-head'>
-                <button className='add-button' onClick={() => setOpen(true)}><span>&#43;</span> Add Product</button>
+                <button
+                    className='add-button'
+                    onClick={() => {
+                        setOpen(true)
+                        setModalData(null)
+                    }}
+                >
+                    <span>&#43;</span> Add Product</button>
             </div>
             <Table
                 columns={columns}
-                dataSource={itemsData}
+                dataSource={itemsData.map((item, index) => ({...item, number: index + 1}))}
                 onRow={(record) => {
                     return {
                         onClick: () => {
                             setModalData(record);
-                            setOpen(true);
                         }
                     };
                 }} />
-            <Modal open={open} onOk={() => setOpen(false)} onCancel={() => setOpen(false)}>
-                <ModalAddProduct />
-                <ModalDetailProduct/>
-                {/* {modalData && (
-                    <div>
-                        {modalData.product}
-                    </div>
-                )} */}
+            <Modal
+                centered
+                open={open}
+                okText="Submit"
+                cancelText="Cancel"
+                onOk={() => { setOpen(false) }}
+                onCancel={() => setOpen(false)}
+                width={450}
+                footer={null}
+            >
+                <div className='center-div'>
+                    <h3>{idProduct ? "Update" : "Add"} Product</h3>
+
+                    <img alt="" src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
+                    <form >
+                        <div className="container-form">
+                            <div className='input-form'>
+                                <label>Image source</label>
+                                <input
+                                    type="text"
+                                    name="image"
+                                    value={imageProduct}
+                                    onChange={(e) => setImageProduct(e.target.value)}
+                                />
+                            </div>
+                            <div className="input-form">
+                                <label>Category</label>
+                                <select name="category" value={categoryProduct} onChange={(e) => setCategoryProduct(e.target.value)}>
+                                    <option disabled selected value="">Choose category</option>
+                                    <option value="foods">Food</option>
+                                    <option value="drinks">Drink</option>
+                                    <option value="snacks">Snack</option>
+                                </select>
+                            </div>
+                            <div className="input-form">
+                                <label>Product Name</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={nameProduct}
+                                    onChange={(e) => setNameProduct(e.target.value)} />
+                            </div>
+                            <div className="input-form">
+                                <label>Product Price</label>
+                                <input
+                                    type="number"
+                                    name="price"
+                                    value={priceProduct}
+                                    onChange={(e) => setPriceProduct(e.target.value)} />
+                                {/* <InputNumber className='input-price '
+                                formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                                parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
+                            /> */}
+                            </div>
+                            <div className="input-form">
+                                <label>Status</label>
+                                <select name="status">
+                                    <option disabled>Choose status</option>
+                                    <option value="Available">Available</option>
+                                    <option value="Out of Stock">Out of Stock</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div className='modal-footer'>
+                            <button type="button" className='modal-cancel-button' onClick={() => setOpen(false)}>
+                                <span className='modal-button-span'>Cancel</span>
+                            </button>
+                            <button type="button" className='modal-submit-button' disabled={nameProduct === '' && priceProduct === '' && categoryProduct === '' && imageProduct === ''} onClick={() => { handleSubmit(); setOpen(false) }}>
+                                <span className='modal-button-span'>Submit</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </Modal>
         </DefaultLayout>
     )
