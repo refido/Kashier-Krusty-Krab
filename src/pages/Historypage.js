@@ -145,7 +145,7 @@ function Historypage() {
 
     const columns = [
         {
-            title: 'Number',
+            title: 'No',
             dataIndex: 'number',
             key: 'number',
             render: (text, record, index) => index + 1,
@@ -198,6 +198,7 @@ function Historypage() {
                 <p style={{ fontSize: 25 }}>Transaction History</p>
             </div>
             <Table
+                rowKey={record => record._id}
                 columns={columns}
                 dataSource={billsData.map((item, index) => ({...item, number: index + 1}))}
                 onRow={(record) => {
