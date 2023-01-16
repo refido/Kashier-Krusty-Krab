@@ -187,7 +187,7 @@ function Historypage() {
 
 
     return (
-        <DefaultLayout>
+        <DefaultLayout listOrder={false}>
             <div className='block-head'>
                 <p style={{ fontSize: 25 }}>Transaction History</p>
             </div>

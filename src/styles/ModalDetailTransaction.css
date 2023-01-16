@@ -9,9 +9,18 @@
     font-family: 'Poppins';
 }
 
-.detail .ant-modal-content {
+.detail .ant-modal-content{
     background: white;
     border-radius: 50px;
+}
+
+.detail .modal-submit-button {
+    background-color: #FEF56D;
+    border: none;
+    color: #BA6400;
+    border-radius: 50px;
+    width: 130px;
+    height: 40px;
 }
 
 .detailTitle{

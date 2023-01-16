@@ -46,7 +46,7 @@ function Homepage() {
     }, []);
     return (
         <div>
-            <DefaultLayout>
+            <DefaultLayout listOrder={true}>
                 <div className='block-head'>
                     <p>Choose Categori</p>
                     <input className='search-input' placeholder='Search Item'></input>

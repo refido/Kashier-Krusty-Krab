@@ -52,20 +52,20 @@ const ButtonPayment = () => {
     };
     return (
         <>
-            <Button 
-                type="primary" 
+            <button type="button" className='modal-submit-button'
                 onClick={() => setOpen(true)}
                 disabled={cartItems.length === 0}
-                >
-                Confirm
-            </Button>
+            >
+                <span className='modal-button-span'>Confirm</span>
+            </button>
             <Modal
+                className='primary'
                 centered
                 open={open}
                 okText="Submit"
                 cancelText="Cancel"
                 okButtonProps={{ disabled: (money < (subTotal + ((subTotal / 100) * 10))) }}
-                onOk={() => {  setOpen(false); setSecondOpen(true) }}
+                onOk={() => { setOpen(false); setSecondOpen(true) }}
                 onCancel={() => setOpen(false)}
                 width={400}
                 footer={null}
@@ -107,6 +107,7 @@ const ButtonPayment = () => {
 
 
             <Modal
+            className='primary'
                 maskClosable={false}
                 centered
                 open={secondOpen}
