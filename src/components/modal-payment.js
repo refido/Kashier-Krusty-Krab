@@ -65,7 +65,10 @@ const ButtonPayment = () => {
                 okText="Submit"
                 cancelText="Cancel"
                 okButtonProps={{ disabled: (money < (subTotal + ((subTotal / 100) * 10))) }}
-                onOk={() => { setOpen(false); setSecondOpen(true) }}
+                onOk={() => {
+                    setOpen(false)
+                    setSecondOpen(true)
+                }}
                 onCancel={() => setOpen(false)}
                 width={400}
                 footer={null}
@@ -97,7 +100,10 @@ const ButtonPayment = () => {
                             <button type="button" className='modal-cancel-button' onClick={() => setOpen(false)}>
                                 <span className='modal-button-span'>Cancel</span>
                             </button>
-                            <button type="button" className='modal-submit-button' onClick={() => { setOpen(false); setSecondOpen(true) }}>
+                            <button type="button" className='modal-submit-button' onClick={() => {
+                                setOpen(false);
+                                setSecondOpen(true)
+                            }}>
                                 <span className='modal-button-span'>Submit</span>
                             </button>
                         </div>
@@ -107,20 +113,18 @@ const ButtonPayment = () => {
 
 
             <Modal
-            className='primary'
+                className='primary'
                 maskClosable={false}
                 centered
                 open={secondOpen}
                 okText="Make another transaction"
                 cancelText="Print invoice"
                 onOk={() => {
-                    handleSubmit()
                     setSecondOpen(false)
-                    setCustName('')
-                    setMoney('')
-                    dispatch({ type: "RESET_CART" })
                 }}
-                onCancel={() => setSecondOpen(false)}
+                onCancel={() => {
+                    setSecondOpen(false)
+                }}
                 width={400}
                 footer={null}
             >
@@ -131,10 +135,22 @@ const ButtonPayment = () => {
                     <h4>Rp. {(money - (subTotal + ((subTotal / 100) * 10))).toFixed(2)} </h4>
 
                     <div className='modal-footer payment'>
-                        <button type="button" className='modal-other-button' onClick={() => setSecondOpen(false)}>
+                        <button type="button" className='modal-other-button' onClick={() => {
+                            handleSubmit()
+                            setCustName('')
+                            setMoney('')
+                            dispatch({ type: "RESET_CART" })
+                            setSecondOpen(false)
+                        }}>
                             <span className='modal-button-span'>Make another transaction</span>
                         </button>
-                        <button type="button" className='modal-print-button' onClick={() => setSecondOpen(false)}>
+                        <button type="button" className='modal-print-button' onClick={() => {
+                            handleSubmit()
+                            setCustName('')
+                            setMoney('')
+                            dispatch({ type: "RESET_CART" })
+                            setSecondOpen(false)
+                        }}>
                             <span className='modal-button-span'>Print invoice</span>
                         </button>
                     </div>
