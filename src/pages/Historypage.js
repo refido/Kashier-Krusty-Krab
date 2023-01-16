@@ -5,6 +5,7 @@ import { ProfileOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
 import moment from 'moment';
+import '../styles/ModalDetailTransaction.css';
 
 function Historypage() {
 

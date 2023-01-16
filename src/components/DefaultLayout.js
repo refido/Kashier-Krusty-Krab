@@ -11,11 +11,13 @@ import { useSelector } from 'react-redux'
 
 function DefaultLayout({ listOrder, children }) {
   const { loading } = useSelector((state) => state.rootReducer);
-  let setting = 0;
-  if(listOrder){
-    setting = 6;
-  }else{
-    setting = 0;
+  let setPull = 0;
+  let setSpan = 22;
+  let setwidth = 91;
+  if (listOrder) {
+    setPull = 6;
+    setSpan = 16;
+    setwidth = 65;
   }
 
   return (
@@ -35,12 +37,12 @@ function DefaultLayout({ listOrder, children }) {
                   <ListOrder />
                 )
             }
-            <Col span={16} pull={setting}>
+            <Col span={setSpan} pull={setPull}>
               <Layout className='site-layout'>
                 <Content
                   className='site-layout-background'
                   style={{
-                    padding: 24,
+                    padding: 24, width: `${setwidth}vw`
                   }}
                 >
                   {children}
