@@ -2,7 +2,7 @@ import DefaultLayout from '../components/DefaultLayout'
 import '../styles/itempage.css'
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button, Input, message, Modal, Space, Table } from 'antd';
-import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
@@ -210,6 +210,16 @@ function Itempage() {
                 text
             ),
     });
+    const confirmDelete = (record) => {
+        Modal.confirm({
+            title: 'Confirm',
+            icon: <ExclamationCircleOutlined />,
+            content: 'Are you sure to delete this item?',
+            onOk() {
+                handleDelete(record)
+              }
+        });
+    };
 
     const columns = [
         {
@@ -280,7 +290,7 @@ function Itempage() {
             render: (_id, record) => (
                 <Space size="middle">
                     <span style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => setOpen(true)}><EditOutlined />Edit</span>
-                    <span style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => handleDelete(record)}><DeleteOutlined />Remove</span>
+                    <span style={{ display: 'inline-flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => confirmDelete(record)}><DeleteOutlined />Remove</span>
                 </Space>
             ),
         },
