@@ -25,9 +25,11 @@ const ButtonPayment = () => {
     }, [cartItems]);
 
     const componentRef = useRef();
-    const handlePrint = useReactToPrint({
+    const HandlePrint =  useReactToPrint({
         content: () => componentRef.current
     });
+
+
 
     //handleSubmit
     const handleSubmit = async () => {
@@ -100,10 +102,15 @@ const ButtonPayment = () => {
                             <button type="button" className='modal-cancel-button' onClick={() => setOpen(false)}>
                                 <span className='modal-button-span'>Cancel</span>
                             </button>
-                            <button type="button" className='modal-submit-button' onClick={() => {
-                                setOpen(false);
-                                setSecondOpen(true)
-                            }}>
+                            <button
+                                type="button"
+                                className='modal-submit-button'
+                                onClick={() => {
+                                    setOpen(false);
+                                    setSecondOpen(true)
+                                }}
+                                disabled={money < (subTotal + ((subTotal / 100) * 10))}
+                            >
                                 <span className='modal-button-span'>Submit</span>
                             </button>
                         </div>
@@ -144,10 +151,10 @@ const ButtonPayment = () => {
                             <span className='modal-button-span'>Make another transaction</span>
                         </button>
                         <button type="button" className='modal-print-button' onClick={() => {
-                            handleSubmit()
-                            setCustName('')
-                            setMoney('')
-                            dispatch({ type: "RESET_CART" })
+                            // handleSubmit()
+                            // setCustName('')
+                            // setMoney('')
+                            // dispatch({ type: "RESET_CART" })
                             setSecondOpen(false)
                             setOpenModalDetailTransaction(true)
                         }}>
@@ -162,6 +169,7 @@ const ButtonPayment = () => {
                 maskClosable={false}
                 className="detail"
                 open={openModalDetailTransaction}
+                onCancel={() => setOpenModalDetailTransaction(false)}
                 width={490}
                 footer={null}
             >
@@ -190,7 +198,7 @@ const ButtonPayment = () => {
                         {
                             (cartItems).map(item => (
                                 <tr>
-                                    <td>{item.name}</td>
+                                    <td>{custName}</td>
                                     <td>{item.quantity}</td>
                                     <td>Rp {item.price.toLocaleString().replace(',', '.')}</td>
                                     <td>Rp {item.price * item.quantity}</td>
@@ -212,10 +220,21 @@ const ButtonPayment = () => {
                     </table>
                 </div>
                 <div className='transactiondetail-footer'>
-                    <button type="button" className='modal-close-button' onClick={ () => setOpenModalDetailTransaction(false) }>
+                    <button type="button" className='modal-close-button' onClick={() => setOpenModalDetailTransaction(false)}>
                         <span className='modal-button-span'>Close</span>
                     </button>
-                    <button type="button" className='modal-submit-button' onClick={handlePrint}>
+                    <button
+                        type="button"
+                        className='modal-submit-button'
+                        onClick={() => {
+                            HandlePrint()
+                            handleSubmit()
+                            setCustName('')
+                            setMoney('')
+                            dispatch({ type: "RESET_CART" })
+                        }}
+
+                    >
                         <span className='modal-button-span'>Print</span>
                     </button>
                 </div>

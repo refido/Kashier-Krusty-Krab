@@ -1,5 +1,6 @@
 import DefaultLayout from '../components/DefaultLayout'
 import '../styles/itempage.css'
+import '../styles/ModalPayment.css'
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button, Input, message, Modal, Space, Table } from 'antd';
 import { DeleteOutlined, EditOutlined, ExclamationCircleOutlined, SearchOutlined } from '@ant-design/icons';
