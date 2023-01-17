@@ -1,5 +1,5 @@
 import Login from './pages/Login';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Historypage from './pages/Historypage';
 import Itempage from './pages/Itempage';
@@ -10,19 +10,33 @@ function App() {
       <Routes>
         <Route
           path='/'
-          element={<Login />}
+          element={
+            <Login />
+          }
         />
         <Route
           path='/cashier'
-          element={<Homepage />}
+          element={
+            <ProtectedRoute>
+              <Homepage />
+            </ProtectedRoute>
+          }
         />
         <Route
           path='/history-payment'
-          element={<Historypage />}
+          element={
+            <ProtectedRoute>
+              <Historypage />
+            </ProtectedRoute>
+          }
         />
         <Route
           path='/menu-item'
-          element={<Itempage />}
+          element={
+            <ProtectedRoute>
+              <Itempage />
+            </ProtectedRoute>
+          }
         />
       </Routes>
     </BrowserRouter >
@@ -30,3 +44,11 @@ function App() {
 }
 
 export default App;
+
+export function ProtectedRoute({ children }) {
+  if (localStorage.getItem("auth")) {
+    return children;
+  } else {
+    return <Navigate to="/" />;
+  }
+}

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Modal } from 'antd';
 import '../styles/ModalPayment.css';
 
-const ModalAddProduct = () => {
-    const [openModalAddProduct, setOpenModalAddProduct] = useState(true);
+const ModalAddProduct = (open) => {
+    const [openModalAddProduct, setOpenModalAddProduct] = useState(open.setOpen);
     return (
         <Modal
             className='primary'
@@ -18,7 +18,6 @@ const ModalAddProduct = () => {
         >
             <div className='center-div'>
                 <h3>Add Product</h3>
-
                 <img alt="" src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
                 <form >
                     <div className="container-form">
@@ -42,10 +41,6 @@ const ModalAddProduct = () => {
                             <input
                                 type="number"
                                 name="total" />
-                            {/* <InputNumber className='input-price '
-                                formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            /> */}
                         </div>
                         <div className="input-form">
                             <label>Status</label>

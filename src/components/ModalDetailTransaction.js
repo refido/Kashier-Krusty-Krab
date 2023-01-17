@@ -31,7 +31,6 @@ const ModalDetailTransaction = () => {
                     </tr>
                 </table>
                 <p className='purchasingList'>Purchasing List</p>
-
                 <table className='purchase'>
                     <tr>
                         <th>No</th>
@@ -44,31 +43,31 @@ const ModalDetailTransaction = () => {
                         <td>1</td>
                         <td>Krabby Patty</td>
                         <td>1</td>
-                        <td>Rp 20.000</td>
-                        <td>Rp 20.000</td>
+                        <td>$. 20.000</td>
+                        <td>$. 20.000</td>
                     </tr>
                     <tr>
                         <td>1</td>
                         <td>Krabby Patty</td>
                         <td>1</td>
-                        <td>Rp 20.000</td>
-                        <td>Rp 20.000</td>
+                        <td>$. 20.000</td>
+                        <td>$. 20.000</td>
                     </tr>
                     <tr className='prow'>
                         <td colSpan={4}>Subtotal</td>
-                        <td>Rp 20.000</td>
+                        <td>$. 20.000</td>
                     </tr>
                     <tr>
                         <td colSpan={4}>Discount</td>
-                        <td>Rp -</td>
+                        <td>$. -</td>
                     </tr>
                     <tr>
                         <td colSpan={4}>Tax</td>
-                        <td>Rp -</td>
+                        <td>$. -</td>
                     </tr>
                     <tr>
                         <th colSpan={4}>Total Price</th>
-                        <th>Rp 20.000</th>
+                        <th>$. 20.000</th>
                     </tr>
                 </table>
 

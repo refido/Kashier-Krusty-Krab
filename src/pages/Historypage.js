@@ -1,12 +1,13 @@
 import DefaultLayout from '../components/DefaultLayout'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button, Input, Modal, Space, Table } from 'antd';
 import { ProfileOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import axios from 'axios';
 import moment from 'moment';
-import '../styles/ModalDetailTransaction.css';
 import { useReactToPrint } from 'react-to-print';
+import { useDispatch } from 'react-redux';
+import '../styles/ModalDetailTransaction.css';
 
 function Historypage() {
 
@@ -14,12 +15,11 @@ function Historypage() {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
-
+    const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     const [modalData, setModalData] = useState(null)
     const [billsData, setBillsData] = useState([]);
     const [subTotal, setSubTotal] = useState()
-
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -127,26 +127,27 @@ function Historypage() {
             ),
     });
 
-    const getAllBills = async () => {
+    const getAllBills = useCallback(async () => {
         try {
+            dispatch({ type: "SHOW_LOADING" })
             const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/bill/");
             setBillsData(data);
+            dispatch({ type: "HIDE_LOADING" })
         } catch (error) {
             console.log(error);
         }
-    };
+    }, [dispatch])
     //useEffect
     useEffect(() => {
         getAllBills();
-        //eslint-disable-next-line
-    }, []);
+    }, [getAllBills]);
 
     const columns = [
         {
-            title: 'ID Transaction',
-            dataIndex: '_id',
-            key: '_id',
-            sorter: (a, b) => a.key - b.key,
+            title: 'No',
+            dataIndex: 'number',
+            key: 'number',
+            render: (text, record, index) => index + 1,
         },
         {
             title: 'Customer Name',
@@ -177,7 +178,7 @@ function Historypage() {
             key: 'action',
             render: () => (
                 <Space size="middle">
-                    <a style={{ display: 'inline-flex', alignItems: 'center' }} onClick={() => setOpen(true)}><ProfileOutlined style={{ marginRight: 8 }} />Detail</a>
+                    <a href='##' style={{ display: 'inline-flex', alignItems: 'center' }} onClick={() => setOpen(true)}><ProfileOutlined style={{ marginRight: 8 }} />Detail</a>
                 </Space>
             ),
         },
@@ -196,8 +197,9 @@ function Historypage() {
                 <p style={{ fontSize: 25 }}>Transaction History</p>
             </div>
             <Table
+                rowKey={record => record._id}
                 columns={columns}
-                dataSource={billsData}
+                dataSource={billsData.map((item, index) => ({ ...item, number: index + 1 }))}
                 onRow={(record) => {
                     return {
                         onClick: () => {
@@ -221,58 +223,55 @@ function Historypage() {
                         width={490}
                     >
                         <div className='center-div' ref={componentRef}>
-                            <h3 className='detailTitle'>Detail Transaction</h3>
-                            <table className='transaction-table'>
-                                <tr>
-                                    <td>ID Transaction</td>
-                                    <td className='value'>{modalData._id}</td>
-                                </tr>
-                                <tr>
-                                    <td>Date & Time</td>
-                                    <td className='value'>{moment(modalData.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                                </tr>
-                                <tr>
-                                    <td>Customer Name</td>
-                                    <td className='value'>{modalData.name}</td>
-                                </tr>
-                            </table>
-                            <p className='purchasingList'>Purchasing List</p>
+                            <div>
+                                <h3 className='detailTitle'>Detail Transaction</h3>
+                                <table className='transaction-table'>
+                                    <tr>
+                                        <td>ID Transaction</td>
+                                        <td className='value'>{modalData._id}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date & Time</td>
+                                        <td className='value'>{moment(modalData.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Customer Name</td>
+                                        <td className='value'>{modalData.name}</td>
+                                    </tr>
+                                </table>
+                                <p className='purchasingList'>Purchasing List</p>
+                                <table className='purchase'>
+                                    <tr>
+                                        <th>Items</th>
+                                        <th>Qty</th>
+                                        <th>Price</th>
+                                        <th>Total Price</th>
+                                    </tr>
+                                    {
+                                        (modalData.cartItems).map(item => (
+                                            <tr>
+                                                <td>{item.name}</td>
+                                                <td>{item.quantity}</td>
+                                                <td>$. {item.price.toLocaleString().replace(',', '.')}</td>
+                                                <td>$. {item.price * item.quantity}</td>
+                                            </tr>
+                                        ))
 
-                            <table className='purchase'>
-                                <tr>
-                                    <th>Items</th>
-                                    <th>Qty</th>
-                                    <th>Price</th>
-                                    <th>Total Price</th>
-                                </tr>
-                                {
-                                    (modalData.cartItems).map(item => (
-                                        <tr>
-                                            <td>{item.name}</td>
-                                            <td>{item.quantity}</td>
-                                            <td>Rp {item.price.toLocaleString().replace(',', '.')}</td>
-                                            <td>Rp {item.price * item.quantity}</td>
-                                        </tr>
-                                    ))
-
-                                }
-                                <tr className='prow'>
-                                    <td colSpan={4}>Subtotal</td>
-                                    <td>Rp. {subTotal}</td>
-                                </tr>
-                                {/* <tr>
-                                    <td colSpan={4}>Discount</td>
-                                    <td>Rp -</td>
-                                </tr> */}
-                                <tr>
-                                    <td colSpan={4}>Tax</td>
-                                    <td>Rp. {(subTotal / 100) * 10}</td>
-                                </tr>
-                                <tr>
-                                    <th colSpan={4}>Total Price</th>
-                                    <th>Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
-                                </tr>
-                            </table>
+                                    }
+                                    <tr className='prow'>
+                                        <td colSpan={4}>Subtotal</td>
+                                        <td>$. {subTotal}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colSpan={4}>Tax</td>
+                                        <td>$. {(subTotal / 100) * 10}</td>
+                                    </tr>
+                                    <tr>
+                                        <th colSpan={4}>Total Price</th>
+                                        <th>$. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
+                                    </tr>
+                                </table>
+                            </div>
                         </div>
                         <div className='transactiondetail-footer'>
                             <button type="button" className='modal-submit-button' onClick={handlePrint}>
