@@ -252,23 +252,22 @@ function Historypage() {
                                             <tr>
                                                 <td>{item.name}</td>
                                                 <td>{item.quantity}</td>
-                                                <td>$. {item.price.toLocaleString().replace(',', '.')}</td>
-                                                <td>$. {item.price * item.quantity}</td>
+                                                <td>$ {item.price.toLocaleString().replace(',', '.')}</td>
+                                                <td>$ {item.price * item.quantity}</td>
                                             </tr>
                                         ))
-
                                     }
                                     <tr className='prow'>
                                         <td colSpan={4}>Subtotal</td>
-                                        <td>$. {subTotal}</td>
+                                        <td>$ {subTotal}</td>
                                     </tr>
                                     <tr>
                                         <td colSpan={4}>Tax</td>
-                                        <td>$. {(subTotal / 100) * 10}</td>
+                                        <td>$ {(subTotal / 100) * 10}</td>
                                     </tr>
                                     <tr>
                                         <th colSpan={4}>Total Price</th>
-                                        <th>$. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
+                                        <th>$ {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
                                     </tr>
                                 </table>
                             </div>

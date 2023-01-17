@@ -5,8 +5,8 @@ import '../styles/ModalDetailTransaction.css';
 const ModalDetailTransaction = () => {
     const [openModalDetailTransaction, setOpenModalDetailTransaction] = useState(true);
     return (
+        <div className="detail">
         <Modal
-            className="detail"
             centered
             open={openModalDetailTransaction}
             okText="Print"
@@ -78,6 +78,7 @@ const ModalDetailTransaction = () => {
                 </div>
             </div>
         </Modal>
+        </div>
     );
 };
 

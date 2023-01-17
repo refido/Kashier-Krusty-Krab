@@ -62,7 +62,6 @@ function Homepage() {
             <DefaultLayout listOrder={true}>
                 <div className='block-head'>
                     <p>Choose Category</p>
-                    <input className='search-input' placeholder='Search Item'></input>
                 </div>
                 <div className='block-category'>
                     {category.map(cat => (

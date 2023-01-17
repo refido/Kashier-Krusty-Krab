@@ -25,7 +25,7 @@ function ItemList({ item }) {
         <p><img src={item.image} alt={item.name} height="60" width="60" /></p>
       </div>
       <p className='text-style-card'>{item.name}</p>
-      <p className='text-style-card'>$. {item.price.toLocaleString().replace(',', '.')}</p>
+      <p className='text-style-card'>$ {item.price.toLocaleString().replace(',', '.')}</p>
       <div>
         <button className='item-button item-text-button' onClick={() => handleAddToCart()}><span>&#10009;</span> Add to cart</button>
       </div>
