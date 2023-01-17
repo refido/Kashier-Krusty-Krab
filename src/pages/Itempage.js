@@ -1,6 +1,6 @@
 import DefaultLayout from '../components/DefaultLayout'
 import '../styles/itempage.css'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button, Input, message, Modal, Space, Table } from 'antd';
 import { DeleteOutlined, EditOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -9,25 +9,19 @@ import { useDispatch } from 'react-redux';
 
 function Itempage() {
     const dispatch = useDispatch()
-
-
     const [modalData, setModalData] = useState(null)
     const [itemsData, setItemsData] = useState([])
     const [open, setOpen] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-
     const [idProduct, setIdProduct] = useState()
     const [nameProduct, setNameProduct] = useState()
     const [priceProduct, setPriceProduct] = useState()
     const [categoryProduct, setCategoryProduct] = useState()
     const [imageProduct, setImageProduct] = useState()
-
-
     const searchInput = useRef(null);
 
-
-    const getAllItems = async () => {
+    const getAllItems = useCallback(async () => {
         try {
             dispatch({ type: "SHOW_LOADING" })
             const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item/");
@@ -36,11 +30,11 @@ function Itempage() {
         } catch (error) {
             console.log(error);
         }
-    };
+    }, [dispatch])
+
     //useEffect
     useEffect(() => {
         getAllItems();
-        //eslint-disable-next-line
         if (modalData) {
             setIdProduct(modalData._id)
             setNameProduct(modalData.name);
@@ -54,7 +48,7 @@ function Itempage() {
             setCategoryProduct('');
             setImageProduct('');
         }
-    }, [modalData]);
+    }, [getAllItems, modalData]);
 
     const handleSubmit = async () => {
         if (idProduct) {
@@ -96,8 +90,6 @@ function Itempage() {
             }
         }
     }
-
-
 
     const handleDelete = async (record) => {
         try {
@@ -236,7 +228,6 @@ function Itempage() {
         {
             title: 'Category',
             dataIndex: 'category',
-            // key: 'category',
             filters: [
                 {
                     text: 'Food',
@@ -259,19 +250,16 @@ function Itempage() {
         {
             title: 'Product',
             dataIndex: 'name',
-            // key: 'name',
             ...getColumnSearchProps('name')
         },
         {
             title: 'Price',
-            // key: 'price',
             dataIndex: 'price',
             sorter: (a, b) => a.price - b.price,
         },
         {
             title: 'Status',
             dataIndex: 'status',
-            // key: 'status',
             sorter: (a, b) => {
                 if (a.status === b.status) {
                     return 0;
@@ -315,7 +303,7 @@ function Itempage() {
             </div>
             <Table
                 columns={columns}
-                dataSource={itemsData.map((item, index) => ({...item, number: index + 1}))}
+                dataSource={itemsData.map((item, index) => ({ ...item, number: index + 1 }))}
                 rowKey={record => record._id}
                 onRow={(record) => {
                     return {
@@ -336,7 +324,6 @@ function Itempage() {
             >
                 <div className='center-div'>
                     <h3>{idProduct ? "Update" : "Add"} Product</h3>
-
                     <img alt="" src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
                     <form >
                         <div className="container-form">
@@ -373,10 +360,6 @@ function Itempage() {
                                     name="price"
                                     value={priceProduct}
                                     onChange={(e) => setPriceProduct(e.target.value)} />
-                                {/* <InputNumber className='input-price '
-                                formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            /> */}
                             </div>
                             <div className="input-form">
                                 <label>Status</label>

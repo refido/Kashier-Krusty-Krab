@@ -6,7 +6,7 @@ const ModalDetailProduct = () => {
     const [openModalDetailProduct, setOpenModalDetailProduct] = useState(true);
     return (
         <Modal
-        className='primary'
+            className='primary'
             centered
             open={openModalDetailProduct}
             okText="Submit"
@@ -18,7 +18,6 @@ const ModalDetailProduct = () => {
         >
             <div className='center-div'>
                 <h3>Detail Product</h3>
-
                 <img alt="" src={process.env.PUBLIC_URL + '/image/productdetail.png'} style={{ width: 130, height: 116 }} />
                 <form >
                     <div className="container-form">
@@ -42,10 +41,6 @@ const ModalDetailProduct = () => {
                             <input
                                 type="number"
                                 name="total" />
-                            {/* <InputNumber className='input-price '
-                                formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            /> */}
                         </div>
                         <div className="input-form">
                             <label>Status</label>

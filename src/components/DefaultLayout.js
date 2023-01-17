@@ -29,9 +29,8 @@ function DefaultLayout({ listOrder, children }) {
             <SideBar>
               <SidebarMenu />
             </SideBar>
-            {/* <ListOrder />   */}
             {
-              listOrder == false
+              listOrder === false
                 ? null
                 : (
                   <ListOrder />
