@@ -18,7 +18,6 @@ const ModalAddProduct = (open) => {
         >
             <div className='center-div'>
                 <h3>Add Product</h3>
-
                 <img alt="" src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
                 <form >
                     <div className="container-form">
@@ -42,10 +41,6 @@ const ModalAddProduct = (open) => {
                             <input
                                 type="number"
                                 name="total" />
-                            {/* <InputNumber className='input-price '
-                                formatter={(value) => `Rp ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                                parser={(value) => value.replace(/\$\s?|(,*)/g, '')}
-                            /> */}
                         </div>
                         <div className="input-form">
                             <label>Status</label>

@@ -9,7 +9,6 @@ function Homepage() {
     const dispatch = useDispatch()
     const [itemsData, setItemsData] = useState([])
     const [selectedCategory, setSelectedCategory] = useState("all")
-
     const category = [
         {
             name: "all",
@@ -30,24 +29,19 @@ function Homepage() {
     ]
 
     const filteredMenu = itemsData.filter((item) => {
-
         switch (selectedCategory) {
             case "all":
                 return true
-
             case "drinks":
                 return item.category === selectedCategory
             case "foods":
                 return item.category === selectedCategory
             case "snacks":
                 return item.category === selectedCategory
-
             default:
-                break;
+                return item.category === selectedCategory
         }
     })
-
-
 
     //useEffect
     useEffect(() => {
@@ -62,12 +56,12 @@ function Homepage() {
             }
         };
         getAllItems();
-    }, []);
+    }, [dispatch]);
     return (
         <div>
             <DefaultLayout listOrder={true}>
                 <div className='block-head'>
-                    <p>Choose Categori</p>
+                    <p>Choose Category</p>
                     <input className='search-input' placeholder='Search Item'></input>
                 </div>
                 <div className='block-category'>
@@ -81,7 +75,7 @@ function Homepage() {
                     {
                         filteredMenu.length > 0 ? (
                             filteredMenu.map((item) => (
-                                <Col key={item._id}  xs={24} lg={6} md={12} sm={6}>
+                                <Col key={item._id} xs={24} lg={6} md={12} sm={6}>
                                     <ItemList item={item} />
                                 </Col>
                             ))

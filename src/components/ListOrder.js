@@ -5,11 +5,9 @@ import React, { useEffect, useState } from 'react'
 import "../styles/ListOrder.css"
 import ButtonPayment from '../components/modal-payment';
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 const ListOrder = () => {
     const dispatch = useDispatch();
     const { cartItems } = useSelector((state) => state.rootReducer);
-
     const [subTotal, setSubTotal] = useState(0);
 
     //handle increament
@@ -53,9 +51,6 @@ const ListOrder = () => {
                                 <p>List Order</p>
                             </div>
                         </Col>
-                        <Col span={12}>
-                            0000000000000
-                        </Col>
                     </Row>
                     <div className='list-order-item'>
                         {cartItems.map(item => (
@@ -85,23 +80,15 @@ const ListOrder = () => {
                                 Subtotal
                             </Col>
                             <Col className='subtotal-price'>
-                                Rp. {subTotal.toLocaleString().replace(',', '.')}
+                                $. {subTotal.toLocaleString().replace(',', '.')}
                             </Col>
                         </Row>
-                        {/* <Row>
-                            <Col className='subtotal'>
-                                Discount
-                            </Col>
-                            <Col className='subtotal-price'>
-                                Rp.123
-                            </Col>
-                        </Row> */}
                         <Row>
                             <Col className='subtotal'>
                                 Tax
                             </Col>
                             <Col className='subtotal-price'>
-                                Rp. {((subTotal / 100) * 10).toFixed(2).toLocaleString().replace(',', '.')}
+                                $. {((subTotal / 100) * 10).toFixed(2).toLocaleString().replace(',', '.')}
                             </Col>
                         </Row>
                         <Row>
@@ -113,7 +100,7 @@ const ListOrder = () => {
                                 Total Price
                             </Col>
                             <Col className='subtotal-price'>
-                                Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}
+                                $. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}
                             </Col>
                         </Row>
                     </div>

@@ -1,5 +1,5 @@
 import DefaultLayout from '../components/DefaultLayout'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button, Input, Modal, Space, Table } from 'antd';
 import { ProfileOutlined, SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
@@ -15,13 +15,11 @@ function Historypage() {
     const handlePrint = useReactToPrint({
         content: () => componentRef.current,
     });
-
     const dispatch = useDispatch()
     const [open, setOpen] = useState(false)
     const [modalData, setModalData] = useState(null)
     const [billsData, setBillsData] = useState([]);
     const [subTotal, setSubTotal] = useState()
-
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
     const searchInput = useRef(null);
@@ -129,21 +127,20 @@ function Historypage() {
             ),
     });
 
-    const getAllBills = async () => {
+    const getAllBills = useCallback(async () => {
         try {
-            dispatch({type: "SHOW_LOADING"})
+            dispatch({ type: "SHOW_LOADING" })
             const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/bill/");
             setBillsData(data);
-            dispatch({type: "HIDE_LOADING"})
+            dispatch({ type: "HIDE_LOADING" })
         } catch (error) {
             console.log(error);
         }
-    };
+    }, [dispatch])
     //useEffect
     useEffect(() => {
         getAllBills();
-        //eslint-disable-next-line
-    }, []);
+    }, [getAllBills]);
 
     const columns = [
         {
@@ -181,7 +178,7 @@ function Historypage() {
             key: 'action',
             render: () => (
                 <Space size="middle">
-                    <a style={{ display: 'inline-flex', alignItems: 'center' }} onClick={() => setOpen(true)}><ProfileOutlined style={{ marginRight: 8 }} />Detail</a>
+                    <a href='##' style={{ display: 'inline-flex', alignItems: 'center' }} onClick={() => setOpen(true)}><ProfileOutlined style={{ marginRight: 8 }} />Detail</a>
                 </Space>
             ),
         },
@@ -202,7 +199,7 @@ function Historypage() {
             <Table
                 rowKey={record => record._id}
                 columns={columns}
-                dataSource={billsData.map((item, index) => ({...item, number: index + 1}))}
+                dataSource={billsData.map((item, index) => ({ ...item, number: index + 1 }))}
                 onRow={(record) => {
                     return {
                         onClick: () => {
@@ -255,27 +252,23 @@ function Historypage() {
                                             <tr>
                                                 <td>{item.name}</td>
                                                 <td>{item.quantity}</td>
-                                                <td>Rp {item.price.toLocaleString().replace(',', '.')}</td>
-                                                <td>Rp {item.price * item.quantity}</td>
+                                                <td>$. {item.price.toLocaleString().replace(',', '.')}</td>
+                                                <td>$. {item.price * item.quantity}</td>
                                             </tr>
                                         ))
 
                                     }
                                     <tr className='prow'>
                                         <td colSpan={4}>Subtotal</td>
-                                        <td>Rp. {subTotal}</td>
+                                        <td>$. {subTotal}</td>
                                     </tr>
-                                    {/* <tr>
-                                    <td colSpan={4}>Discount</td>
-                                    <td>Rp -</td>
-                                </tr> */}
                                     <tr>
                                         <td colSpan={4}>Tax</td>
-                                        <td>Rp. {(subTotal / 100) * 10}</td>
+                                        <td>$. {(subTotal / 100) * 10}</td>
                                     </tr>
                                     <tr>
                                         <th colSpan={4}>Total Price</th>
-                                        <th>Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
+                                        <th>$. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
                                     </tr>
                                 </table>
                             </div>

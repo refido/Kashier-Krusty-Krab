@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import { Button, message, Modal } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { message, Modal } from 'antd';
 import '../styles/ModalPayment.css';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -12,20 +12,14 @@ const ButtonPayment = () => {
     const [subTotal, setSubTotal] = useState();
     const [open, setOpen] = useState(false);
     const [secondOpen, setSecondOpen] = useState(false);
-
-    const onOk = () => { setOpen(false); setSecondOpen(true) }
-    const onCancel = () => setOpen(false)
     const [custName, setCustName] = useState('')
     const [money, setMoney] = useState(null)
-
-
 
     useEffect(() => {
         let temp = 0;
         cartItems.forEach((item) => (temp = temp + item.price * item.quantity));
         setSubTotal(temp);
     }, [cartItems]);
-
 
     //handleSubmit
     const handleSubmit = async () => {
@@ -41,7 +35,6 @@ const ButtonPayment = () => {
                 ),
                 userId: JSON.parse(localStorage.getItem("auth"))._id,
             };
-            // console.log(newObject);
             await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/bill/", newObject);
             message.success("Bill Generated");
             navigate("/");
@@ -75,7 +68,6 @@ const ButtonPayment = () => {
             >
                 <div className='center-div'>
                     <h3>Payment</h3>
-
                     <img alt="" src={process.env.PUBLIC_URL + '/image/payment.png'} style={{ width: 200, height: 150.5 }} />
                     <form >
                         <div className="container-form">
@@ -111,7 +103,6 @@ const ButtonPayment = () => {
                 </div>
             </Modal>
 
-
             <Modal
                 className='primary'
                 maskClosable={false}
@@ -132,7 +123,7 @@ const ButtonPayment = () => {
                     <h3>Payment</h3>
                     <img alt="" src={process.env.PUBLIC_URL + '/image/payment2.png'} style={{ width: 150, height: 150 }} />
                     <h6><span className='custName'>{custName}'s</span> change amount</h6>
-                    <h4>Rp. {(money - (subTotal + ((subTotal / 100) * 10))).toFixed(2)} </h4>
+                    <h4>$. {(money - (subTotal + ((subTotal / 100) * 10))).toFixed(2)} </h4>
 
                     <div className='modal-footer payment'>
                         <button type="button" className='modal-other-button' onClick={() => {

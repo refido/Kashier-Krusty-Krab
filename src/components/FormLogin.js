@@ -15,7 +15,7 @@ function FormLogin() {
     const handleSubmit = useCallback(async (e) => {
         e.preventDefault()
         try {
-            dispatch({type: "SHOW_LOADING"});
+            dispatch({ type: "SHOW_LOADING" });
             const res = await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/users/login", { userId: username, password: password })
             if (res.data.message === "Login Fail") {
                 message.error("Something went wrong")
