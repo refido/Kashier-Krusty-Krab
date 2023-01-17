@@ -221,60 +221,58 @@ function Historypage() {
                         width={490}
                     >
                         <div className='center-div' ref={componentRef}>
-                            <div>
-                                <h3 className='detailTitle'>Detail Transaction</h3>
-                                <table className='transaction-table'>
-                                    <tr>
-                                        <td>ID Transaction</td>
-                                        <td className='value'>{modalData._id}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Date & Time</td>
-                                        <td className='value'>{moment(modalData.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Customer Name</td>
-                                        <td className='value'>{modalData.name}</td>
-                                    </tr>
-                                </table>
-                                <p className='purchasingList'>Purchasing List</p>
+                            <h3 className='detailTitle'>Detail Transaction</h3>
+                            <table className='transaction-table'>
+                                <tr>
+                                    <td>ID Transaction</td>
+                                    <td className='value'>{modalData._id}</td>
+                                </tr>
+                                <tr>
+                                    <td>Date & Time</td>
+                                    <td className='value'>{moment(modalData.date).format('MMMM Do YYYY, h:mm:ss a')}</td>
+                                </tr>
+                                <tr>
+                                    <td>Customer Name</td>
+                                    <td className='value'>{modalData.name}</td>
+                                </tr>
+                            </table>
+                            <p className='purchasingList'>Purchasing List</p>
 
-                                <table className='purchase'>
-                                    <tr>
-                                        <th>Items</th>
-                                        <th>Qty</th>
-                                        <th>Price</th>
-                                        <th>Total Price</th>
-                                    </tr>
-                                    {
-                                        (modalData.cartItems).map(item => (
-                                            <tr>
-                                                <td>{item.name}</td>
-                                                <td>{item.quantity}</td>
-                                                <td>Rp {item.price.toLocaleString().replace(',', '.')}</td>
-                                                <td>Rp {item.price * item.quantity}</td>
-                                            </tr>
-                                        ))
+                            <table className='purchase'>
+                                <tr>
+                                    <th>Items</th>
+                                    <th>Qty</th>
+                                    <th>Price</th>
+                                    <th>Total Price</th>
+                                </tr>
+                                {
+                                    (modalData.cartItems).map(item => (
+                                        <tr>
+                                            <td>{item.name}</td>
+                                            <td>{item.quantity}</td>
+                                            <td>Rp {item.price.toLocaleString().replace(',', '.')}</td>
+                                            <td>Rp {item.price * item.quantity}</td>
+                                        </tr>
+                                    ))
 
-                                    }
-                                    <tr className='prow'>
-                                        <td colSpan={4}>Subtotal</td>
-                                        <td>Rp. {subTotal}</td>
-                                    </tr>
-                                    {/* <tr>
+                                }
+                                <tr className='prow'>
+                                    <td colSpan={4}>Subtotal</td>
+                                    <td>Rp. {subTotal}</td>
+                                </tr>
+                                {/* <tr>
                                     <td colSpan={4}>Discount</td>
                                     <td>Rp -</td>
                                 </tr> */}
-                                    <tr>
-                                        <td colSpan={4}>Tax</td>
-                                        <td>Rp. {(subTotal / 100) * 10}</td>
-                                    </tr>
-                                    <tr>
-                                        <th colSpan={4}>Total Price</th>
-                                        <th>Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
-                                    </tr>
-                                </table>
-                            </div>
+                                <tr>
+                                    <td colSpan={4}>Tax</td>
+                                    <td>Rp. {(subTotal / 100) * 10}</td>
+                                </tr>
+                                <tr>
+                                    <th colSpan={4}>Total Price</th>
+                                    <th>Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
+                                </tr>
+                            </table>
                         </div>
                         <div className='transactiondetail-footer'>
                             <button type="button" className='modal-submit-button' onClick={handlePrint}>

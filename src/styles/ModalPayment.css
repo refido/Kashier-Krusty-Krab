@@ -58,6 +58,14 @@
     width: 100%;
 }
 
+.modal-close-button {
+    background-color: transparent;
+    border: none;
+    color: #BA6400;
+    width: 130px;
+    height: 40px;
+}
+
 .modal-other-button {
     background-color: #FEF56D;
     border: none;
