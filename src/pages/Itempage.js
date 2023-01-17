@@ -339,6 +339,7 @@ function Itempage() {
                         <div className="container-form">
                             <div className='input-form'>
                                 <label>Image source</label>
+                                <img style={{ display:'block', margin:'auto', marginBottom:20, maxHeight:60 }} src={imageProduct} alt={nameProduct} />
                                 <input
                                     type="text"
                                     name="image"
