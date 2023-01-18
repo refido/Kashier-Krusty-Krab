@@ -236,7 +236,7 @@ function Historypage() {
                                     </tr>
                                     <tr>
                                         <td>Customer Name</td>
-                                        <td className='value'>{modalData.name}</td>
+                                        <td className='value'>{modalData.customerName}</td>
                                     </tr>
                                 </table>
                                 <p className='purchasingList'>Purchasing List</p>
