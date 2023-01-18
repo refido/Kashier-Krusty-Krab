@@ -131,7 +131,6 @@
     width: 133px;
     height: 38px;
 
-    background: #FEF56D;
     border-radius: 50px;
     border: none;
 
@@ -139,6 +138,14 @@
     order: 2;
     flex-grow: 0;
     z-index: 2;
+}
+
+.button-ready{
+    background: #FEF56D;
+}
+
+.button-sold {
+    background: #FF1111;
 }
 
 .item-text-button {
@@ -153,9 +160,14 @@
     display: flex;
     align-items: center;
     text-align: center;
+}
 
+.text-button-ready{
     color: #BA6400;
-    ;
+}
+
+.text-button-sold{
+    color: #FFFFFF;
 }
 
 
@@ -189,7 +201,7 @@
 
     font-style: normal;
     font-weight: 300;
-    font-size: 20px;
+    font-size: 15px;
     line-height: 30px;
     margin: 10px auto 10px auto;
     /* identical to box height */

@@ -80,7 +80,7 @@ const ListOrder = () => {
                                 Subtotal
                             </Col>
                             <Col className='subtotal-price'>
-                                $ {subTotal.toLocaleString().replace(',', '.')}
+                                $ {subTotal.toFixed(2).toLocaleString().replace(',', '.')}
                             </Col>
                         </Row>
                         <Row>
@@ -100,7 +100,7 @@ const ListOrder = () => {
                                 Total Price
                             </Col>
                             <Col className='subtotal-price'>
-                                $ {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}
+                                $ {(subTotal + ((subTotal / 100) * 10)).toFixed(2)}
                             </Col>
                         </Row>
                     </div>
