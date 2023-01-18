@@ -47,7 +47,7 @@ const ButtonPayment = () => {
             };
             await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/bill/", newObject);
             message.success("Bill Generated");
-            navigate("/");
+            navigate("/cashier");
         } catch (error) {
             message.error("Something went wrong");
             console.log(error);
@@ -233,7 +233,6 @@ const ButtonPayment = () => {
                             setMoney('')
                             dispatch({ type: "RESET_CART" })
                         }}
-
                     >
                         <span className='modal-button-span'>Print</span>
                     </button>
