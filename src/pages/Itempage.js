@@ -15,11 +15,14 @@ function Itempage() {
     const [open, setOpen] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
+
     const [idProduct, setIdProduct] = useState()
     const [nameProduct, setNameProduct] = useState()
     const [priceProduct, setPriceProduct] = useState()
     const [categoryProduct, setCategoryProduct] = useState()
     const [imageProduct, setImageProduct] = useState()
+    const [statusProduct, setStatusProduct] = useState()
+
     const searchInput = useRef(null);
 
     const getAllItems = useCallback(async () => {
@@ -42,12 +45,14 @@ function Itempage() {
             setPriceProduct(modalData.price);
             setCategoryProduct(modalData.category);
             setImageProduct(modalData.image);
+            setStatusProduct(modalData.status);
         } else if (modalData === null) {
             setIdProduct('');
             setNameProduct('');
             setPriceProduct('');
             setCategoryProduct('');
             setImageProduct('');
+            setStatusProduct('');
         }
     }, [getAllItems, modalData]);
 
@@ -58,7 +63,8 @@ function Itempage() {
                 name: nameProduct,
                 price: priceProduct,
                 category: categoryProduct,
-                image: imageProduct
+                image: imageProduct,
+                status: statusProduct,
             }
             try {
                 dispatch({ type: "SHOW_LOADING" });
@@ -76,7 +82,8 @@ function Itempage() {
                 name: nameProduct,
                 price: priceProduct,
                 category: categoryProduct,
-                image: imageProduct
+                image: imageProduct,
+                status: statusProduct,
             }
             try {
                 dispatch({ type: "SHOW_LOADING" });
@@ -335,7 +342,6 @@ function Itempage() {
             >
                 <div className='center-div'>
                     <h3>{idProduct ? "Update" : "Add"} Product</h3>
-                    <img alt="" src={process.env.PUBLIC_URL + '/image/productadd.png'} style={{ width: 150, height: 116 }} />
                     <form >
                         <div className="container-form">
                             <div className='input-form'>
@@ -375,10 +381,10 @@ function Itempage() {
                             </div>
                             <div className="input-form">
                                 <label>Status</label>
-                                <select name="status">
-                                    <option disabled>Choose status</option>
-                                    <option value="Available">Available</option>
-                                    <option value="Out of Stock">Out of Stock</option>
+                                <select name="status" value={statusProduct} onChange={(e)=>setStatusProduct(e.target.value === 'true')}>
+                                    <option disabled selected value=''>Choose status</option>
+                                    <option value={true}>Available</option>
+                                    <option value={false}>Out of Stock</option>
                                 </select>
                             </div>
                         </div>
@@ -386,7 +392,7 @@ function Itempage() {
                             <button type="button" className='modal-cancel-button' onClick={() => setOpen(false)}>
                                 <span className='modal-button-span'>Cancel</span>
                             </button>
-                            <button type="button" className='modal-submit-button' disabled={nameProduct === '' && priceProduct === '' && categoryProduct === '' && imageProduct === ''} onClick={() => { handleSubmit(); setOpen(false) }}>
+                            <button type="button" className='modal-submit-button' disabled={nameProduct === '' || priceProduct === '' || categoryProduct === '' || imageProduct === '' || statusProduct === ''} onClick={() => { handleSubmit(); setOpen(false) }}>
                                 <span className='modal-button-span'>Submit</span>
                             </button>
                         </div>
