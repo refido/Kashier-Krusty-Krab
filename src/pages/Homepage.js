@@ -78,7 +78,10 @@ function Homepage() {
                                     <ItemList item={item} />
                                 </Col>
                             ))
-                        ) : "Menu Empty"
+                        ) :
+                            <div className='block-head' style={{ justifyContent:'center'}}>
+                                <p style={{fontSize:100}}>Empty</p>
+                            </div>
                     }
                 </Row>
             </DefaultLayout>
