@@ -160,18 +160,21 @@ function Historypage() {
             dataIndex: 'subTotal',
             key: 'subTotal',
             sorter: (a, b) => a.subTotal - b.subTotal,
+            render: (record) => record.toFixed(2)
         },
         {
             title: 'Tax',
             dataIndex: 'tax',
             key: 'tax',
             sorter: (a, b) => a.tax - b.tax,
+            render: (record) => record.toFixed(2)
         },
         {
             title: 'Total Price',
             key: 'totalAmount',
             dataIndex: 'totalAmount',
             sorter: (a, b) => a.totalAmount - b.totalAmount,
+            render: (record) => record.toFixed(2)
         },
         {
             title: 'Action',
@@ -258,16 +261,16 @@ function Historypage() {
                                         ))
                                     }
                                     <tr className='prow'>
-                                        <td colSpan={4}>Subtotal</td>
-                                        <td>$ {subTotal}</td>
+                                        <td colSpan={3}>Subtotal</td>
+                                        <td>$ {subTotal.toFixed(2)}</td>
                                     </tr>
                                     <tr>
-                                        <td colSpan={4}>Tax</td>
-                                        <td>$ {(subTotal / 100) * 10}</td>
+                                        <td colSpan={3}>Tax</td>
+                                        <td>$ {((subTotal / 100) * 10).toFixed(2)}</td>
                                     </tr>
                                     <tr>
-                                        <th colSpan={4}>Total Price</th>
-                                        <th>$ {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
+                                        <th colSpan={3}>Total Price</th>
+                                        <th>$ {(subTotal + (subTotal / 100) * 10).toFixed(2)}</th>
                                     </tr>
                                 </table>
                             </div>

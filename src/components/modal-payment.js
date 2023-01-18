@@ -1,5 +1,5 @@
-import React, { useCallback, useRef, useEffect, useState } from 'react';
-import { Button, message, Modal } from 'antd';
+import React, { useRef, useEffect, useState } from 'react';
+import { message, Modal } from 'antd';
 import '../styles/ModalPayment.css';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -28,8 +28,6 @@ const ButtonPayment = () => {
     const HandlePrint =  useReactToPrint({
         content: () => componentRef.current
     });
-
-
 
     //handleSubmit
     const handleSubmit = async () => {
@@ -138,7 +136,7 @@ const ButtonPayment = () => {
                     <h3>Payment</h3>
                     <img alt="" src={process.env.PUBLIC_URL + '/image/payment2.png'} style={{ width: 150, height: 150 }} />
                     <h6><span className='custName'>{custName}'s</span> change amount</h6>
-                    <h4>$. {(money - (subTotal + ((subTotal / 100) * 10))).toFixed(2)} </h4>
+                    <h4>$ {(money - (subTotal + ((subTotal / 100) * 10))).toFixed(2)} </h4>
 
                     <div className='modal-footer payment'>
                         <button type="button" className='modal-other-button' onClick={() => {
@@ -151,10 +149,6 @@ const ButtonPayment = () => {
                             <span className='modal-button-span'>Make another transaction</span>
                         </button>
                         <button type="button" className='modal-print-button' onClick={() => {
-                            // handleSubmit()
-                            // setCustName('')
-                            // setMoney('')
-                            // dispatch({ type: "RESET_CART" })
                             setSecondOpen(false)
                             setOpenModalDetailTransaction(true)
                         }}>
@@ -189,7 +183,6 @@ const ButtonPayment = () => {
 
                     <table className='purchase'>
                         <tr>
-                            <th>No</th>
                             <th>Items</th>
                             <th>Qty</th>
                             <th>Price</th>
@@ -198,24 +191,24 @@ const ButtonPayment = () => {
                         {
                             (cartItems).map(item => (
                                 <tr>
-                                    <td>{custName}</td>
+                                    <td>{item.name}</td>
                                     <td>{item.quantity}</td>
-                                    <td>Rp {item.price.toLocaleString().replace(',', '.')}</td>
-                                    <td>Rp {item.price * item.quantity}</td>
+                                    <td>$ {item.price.toLocaleString().replace(',', '.')}</td>
+                                    <td>$ {item.price * item.quantity}</td>
                                 </tr>
                             ))
                         }
                         <tr className='prow'>
-                            <td colSpan={4}>Subtotal</td>
-                            <td>Rp. {subTotal}</td>
+                            <td colSpan={3}>Subtotal</td>
+                            <td>$ {Number(subTotal).toFixed(2)}</td>
                         </tr>
                         <tr>
-                            <td colSpan={4}>Tax</td>
-                            <td>Rp. {(subTotal / 100) * 10}</td>
+                            <td colSpan={3}>Tax</td>
+                            <td>$ {((subTotal / 100) * 10).toFixed(2)}</td>
                         </tr>
                         <tr>
-                            <th colSpan={4}>Total Price</th>
-                            <th>Rp. {Number(subTotal) + Number(((subTotal / 100) * 10).toFixed(2))}</th>
+                            <th colSpan={3}>Total Price</th>
+                            <th>$ {(subTotal + (subTotal / 100) * 10).toFixed(2)}</th>
                         </tr>
                     </table>
                 </div>

@@ -35,8 +35,6 @@ function ItemList({ item }) {
     }
   }
 
-  console.log(data);
-
   return (
     <Card className='card-style'>
       {data.status === true ?

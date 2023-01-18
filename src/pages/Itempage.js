@@ -15,7 +15,6 @@ function Itempage() {
     const [open, setOpen] = useState(false)
     const [searchText, setSearchText] = useState('');
     const [searchedColumn, setSearchedColumn] = useState('');
-
     const [idProduct, setIdProduct] = useState()
     const [nameProduct, setNameProduct] = useState()
     const [priceProduct, setPriceProduct] = useState()
