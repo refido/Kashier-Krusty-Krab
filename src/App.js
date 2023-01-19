@@ -3,11 +3,19 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import Homepage from './pages/Homepage';
 import Historypage from './pages/Historypage';
 import Itempage from './pages/Itempage';
+import { useEffect, useState } from 'react';
 
 function App() {
+  const [media, setMedia] = useState(window.matchMedia("(min-width: 816px)").matches)
+
+  useEffect(()=>{
+    window
+      .matchMedia("(min-width:816px)")
+      .addEventListener('change', e=>setMedia(e.matches))
+  }, [])
   return (
     <BrowserRouter>
-      <Routes>
+      {media && (<Routes>
         <Route
           path='/'
           element={
@@ -38,7 +46,10 @@ function App() {
             </ProtectedRoute>
           }
         />
-      </Routes>
+      </Routes>)}
+
+      {!media && (<h1>Squidward doesn't like smartphone view, please use desktop!</h1>)}
+      
     </BrowserRouter >
   );
 }
