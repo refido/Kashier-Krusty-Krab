@@ -1,5 +1,5 @@
 import React from 'react';
-import { Menu } from 'antd';
+import { Menu, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import logoKrustyKrab from '../logo/logoKrustyKrab.png';
 import cashier from '../logo/cashier.png';
@@ -45,6 +45,7 @@ const App = () => {
                     <Menu.Item key="/logout" style={{ paddingLeft: 12, marginTop: 5 }}
                         onClick={() => {
                             localStorage.removeItem("auth");
+                            message.success('Success logout!')
                             navigate("/");
                         }}>
                         <img alt="" src={logout} style={{ width: 34, height: 37 }} />
