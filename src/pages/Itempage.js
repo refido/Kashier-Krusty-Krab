@@ -27,7 +27,7 @@ function Itempage() {
     const getAllItems = useCallback(async () => {
         try {
             dispatch({ type: "SHOW_LOADING" })
-            const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item/");
+            const { data } = await axios.get("https://krusty-crab-server.vercel.app/item/get-item/");
             setItemsData(data);
             dispatch({ type: "HIDE_LOADING" })
         } catch (error) {
@@ -67,7 +67,7 @@ function Itempage() {
             }
             try {
                 dispatch({ type: "SHOW_LOADING" });
-                await axios.put("https://kashier-krusty-krab-server.azurewebsites.net/item/update-item", data);
+                await axios.put("https://krusty-crab-server.vercel.app/item/update-item", data);
                 message.success("Item Updated Succesfully");
                 getAllItems();
                 dispatch({ type: "HIDE_LOADING" });
@@ -86,7 +86,7 @@ function Itempage() {
             }
             try {
                 dispatch({ type: "SHOW_LOADING" });
-                await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/item/add-item", data);
+                await axios.post("https://krusty-crab-server.vercel.app/item/add-item", data);
                 message.success("Item Added Succesfully");
                 getAllItems();
                 dispatch({ type: "HIDE_LOADING" });
@@ -103,7 +103,7 @@ function Itempage() {
             dispatch({
                 type: "SHOW_LOADING",
             });
-            await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/item/delete-item", { itemId: record._id });
+            await axios.post("https://krusty-crab-server.vercel.app/item/delete-item", { itemId: record._id });
             message.success("Item Deleted Succesfully");
             getAllItems();
             dispatch({ type: "HIDE_LOADING" });

@@ -43,7 +43,7 @@ const ButtonPayment = () => {
                 ),
                 userId: JSON.parse(localStorage.getItem("auth"))._id,
             };
-            await axios.post("https://kashier-krusty-krab-server.azurewebsites.net/bill/", newObject);
+            await axios.post("https://krusty-crab-server.vercel.app/bill/", newObject);
             message.success("Bill Generated");
             navigate("/cashier");
         } catch (error) {

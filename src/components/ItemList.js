@@ -24,7 +24,7 @@ function ItemList({ item }) {
     }
     try {
       dispatch({ type: "SHOW_LOADING" });
-      await axios.put("https://kashier-krusty-krab-server.azurewebsites.net/item/update-item", data);
+      await axios.put("https://krusty-crab-server.vercel.app/item/update-item", data);
       message.success("Item Updated Succesfully");
       setData({...item, status: false})
       dispatch({ type: "HIDE_LOADING" });

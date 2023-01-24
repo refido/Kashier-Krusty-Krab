@@ -48,7 +48,7 @@ function Homepage() {
         const getAllItems = async () => {
             try {
                 dispatch({ type: "SHOW_LOADING" })
-                const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/item/get-item");
+                const { data } = await axios.get("https://krusty-crab-server.vercel.app/item/get-item");
                 setItemsData(data);
                 dispatch({ type: "HIDE_LOADING" });
             } catch (error) {

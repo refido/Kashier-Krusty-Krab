@@ -130,7 +130,7 @@ function Historypage() {
     const getAllBills = useCallback(async () => {
         try {
             dispatch({ type: "SHOW_LOADING" })
-            const { data } = await axios.get("https://kashier-krusty-krab-server.azurewebsites.net/bill/");
+            const { data } = await axios.get("https://krusty-crab-server.vercel.app/bill/");
             setBillsData(data);
             dispatch({ type: "HIDE_LOADING" })
         } catch (error) {
